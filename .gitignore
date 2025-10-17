@@ -12,7 +12,6 @@ Thumbs.db
 
 # PHP
 vendor/
-composer.lock
 *.log
 
 # Node
