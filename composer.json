@@ -1,0 +1,9 @@
+{
+  "name": "missing-companion-dog/web",
+  "description": "Missing Companion Dog - Pet Lost Report System",
+  "type": "project",
+  "license": "MIT",
+  "require": {
+    "php": ">=8.0"
+  }
+}

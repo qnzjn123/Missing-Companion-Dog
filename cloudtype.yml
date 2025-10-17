@@ -1,22 +1,29 @@
-# CloudType 배포 설정 파일
+# CloudType 배포 설정
 name: Missing Companion Dog
 description: 반려동물 실종 신고 및 관리 시스템
 
+# 빌드 설정
+buildPack: php
+
 # 포트 설정
-port: 8000
+ports:
+  - containerPort: 8000
+    protocol: http
 
-# 실행 명령어
-start: php -S 0.0.0.0:8000
-
-# 프로토콜
-protocol: http
+# 실행 설정
+startCommand: php -S 0.0.0.0:8000
 
 # 환경 변수
 env:
-  PHP_ENV: production
+  - name: ENVIRONMENT
+    value: production
 
 # 헬스 체크
-health:
+healthCheck:
   enabled: true
-  path: /index.php
-  delay: 30
+  path: /
+  port: 8000
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
+  failureThreshold: 3
