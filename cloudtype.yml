@@ -11,8 +11,8 @@ build:
 # 실행 포트
 port: 8000
 
-# 실행 명령어
-run: php -S 0.0.0.0:8000
+# 실행 명령어 (Apache PHP 사용)
+run: vendor/bin/heroku-php-apache2
 
 # 환경 변수
 env:
