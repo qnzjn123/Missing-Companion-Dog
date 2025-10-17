@@ -16,6 +16,11 @@ c:\spring-tool\
 ├── auth.php                 ✅ 회원 가입 / 로그인 페이지
 ├── profile.php              ✅ 개인 프로필 페이지
 ├── manage-reports.php       ✅ 내 신고/제보 관리 페이지
+├── cloudtype.yml            ✅ CloudType 배포 설정
+├── Procfile                 ✅ 실행 명령어 정의
+├── runtime.txt              ✅ PHP 버전 지정
+├── composer.json            ✅ PHP 의존성 관리
+├── .htaccess                ✅ 웹 서버 라우팅
 └── README.md                ✅ 이 파일
 ```
 
@@ -145,7 +150,94 @@ sessionStorage.setItem('userName', name);
 
 ---
 
-## 🚀 시작하기
+## 🚀 CloudType 배포 가이드
+
+### 배포 전 체크리스트
+- ✅ PHP 8.3 이상 확인
+- ✅ composer.json 설정 확인
+- ✅ cloudtype.yml 설정 완료
+- ✅ 모든 PHP 파일 문법 검사
+
+### CloudType 배포 단계
+
+#### 1️⃣ 저장소에 푸시
+```bash
+git add .
+git commit -m "CloudType 배포 설정 업데이트"
+git push origin main
+```
+
+#### 2️⃣ CloudType 대시보드에서 배포
+1. CloudType 계정으로 로그인
+2. "프로젝트 생성" 선택
+3. GitHub 저장소 연결 (qnzjn123/Missing-Companion-Dog)
+4. PHP 8.3 선택
+5. 배포 버튼 클릭
+
+#### 3️⃣ 배포 후 확인
+- 배포된 URL 접속
+- 헬스 체크 응답 확인 (HTTP 200)
+- 각 페이지 정상 작동 확인
+
+### 🔧 배포 설정 파일 설명
+
+| 파일 | 용도 |
+|------|------|
+| `cloudtype.yml` | CloudType 배포 설정 |
+| `Procfile` | 실행 명령어 정의 |
+| `runtime.txt` | PHP 버전 지정 |
+| `composer.json` | PHP 의존성 관리 |
+| `.htaccess` | 웹 서버 라우팅 규칙 |
+
+### 📊 배포 환경 설정
+
+**PHP 버전**: 8.3.20  
+**메모리**: 512MB (기본)  
+**저장소**: 1GB (기본)  
+**포트**: 8000
+
+### 🐛 배포 문제 해결
+
+#### 문제 1: "php-cli not found"
+```
+해결: runtime.txt에서 PHP 버전 명시 (php-8.3.20)
+```
+
+#### 문제 2: "Composer not found"
+```
+해결: cloudtype.yml의 build 섹션에서 composer install 실행
+```
+
+#### 문제 3: "Port already in use"
+```
+해결: cloudtype.yml에서 포트 변경
+```
+
+#### 문제 4: "헬스 체크 실패"
+```
+해결:
+1. healthCheck 경로 확인 (기본값: /)
+2. index.php 존재 확인
+3. PHP 오류 로그 확인
+```
+
+### 📱 배포 후 주소
+
+```
+생산 환경: https://your-app-name.cloudtype.io
+로컬 개발: http://localhost:8000
+```
+
+### 🔐 환경 변수 설정 (필요시)
+
+CloudType 대시보드 → 환경 변수에서 다음 추가:
+
+```
+ENVIRONMENT=production
+PORT=8000
+```
+
+---
 
 ### 1️⃣ 로그인 / 회원 가입
 ```
