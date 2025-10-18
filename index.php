@@ -1,5 +1,5 @@
-ï»¿<?php
-// PHP ì„¤ì • ë¡œë“œ
+<?php
+// PHP ¼³Á¤ ·Îµå
 require_once 'config.php';
 ?>
 <!DOCTYPE html>
@@ -7,8 +7,8 @@ require_once 'config.php';
 <head>
 	<meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>ë°˜ë ¤ë™ë¬¼ ê°•ì•„ì§€ ì‹¤ì¢… ì§€ë„</title>
-	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>ğŸ•</text></svg>">
+	<title>¹İ·Áµ¿¹° °­¾ÆÁö ½ÇÁ¾ Áöµµ</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>??</text></svg>">
 	<style>
 		* { margin: 0; padding: 0; box-sizing: border-box; }
 		body { width: 100%; height: 100vh; font-family: Arial; }
@@ -73,7 +73,7 @@ require_once 'config.php';
 		.user-name { flex: 1; font-weight: bold; color: #333; }
 		.user-time { color: #999; font-size: 10px; }
 
-		/* ëª¨ë°”ì¼ ë°˜ì‘í˜• ë””ìì¸ */
+		/* ¸ğ¹ÙÀÏ ¹İÀÀÇü µğÀÚÀÎ */
 		@media (max-width: 768px) {
 			body { width: 100%; height: 100vh; font-family: Arial; overflow: hidden; }
 			.container { display: flex; flex-direction: column; width: 100%; height: 100%; }
@@ -164,7 +164,7 @@ require_once 'config.php';
 			.online-user-item { display: flex; align-items: center; gap: 5px; padding: 5px; background: #f8f9fa; border-radius: 4px; margin-bottom: 3px; font-size: 9px; }
 		}
 
-		/* ì´ˆì†Œí˜• í•¸ë“œí° (480px ì´í•˜) */
+		/* ÃÊ¼ÒÇü ÇÚµåÆù (480px ÀÌÇÏ) */
 		@media (max-width: 480px) {
 			.user-menu { top: 8px; right: 8px; gap: 3px; }
 			.user-btn { padding: 6px 10px; font-size: 9px; }
@@ -227,212 +227,212 @@ require_once 'config.php';
 	</style>
 </head>
 <body>
-	<!-- ì‚¬ìš©ì ë©”ë‰´ -->
+	<!-- »ç¿ëÀÚ ¸Ş´º -->
 	<div class="user-menu">
 		<span id="user-info" style="padding: 10px 15px; background: white; border-radius: 5px; font-size: 13px; display: none;"></span>
-		<button class="user-btn" onclick="goToHelp()" title="ë„ì›€ë§">â“ ë„ì›€ë§</button>
-		<button class="user-btn" onclick="goToAuth()" id="login-btn">ğŸ” ë¡œê·¸ì¸</button>
-		<button class="user-btn logout" id="logout-btn" onclick="logout()" style="display: none;">ë¡œê·¸ì•„ì›ƒ</button>
+		<button class="user-btn" onclick="goToHelp()" title="µµ¿ò¸»">? µµ¿ò¸»</button>
+		<button class="user-btn" onclick="goToAuth()" id="login-btn">?? ·Î±×ÀÎ</button>
+		<button class="user-btn logout" id="logout-btn" onclick="logout()" style="display: none;">·Î±×¾Æ¿ô</button>
 	</div>
 
 	<div class="container">
-		<!-- ëª¨ë°”ì¼ìš© í† ê¸€ ë²„íŠ¼ -->
-		<button class="mobile-toggle-btn" id="mobileToggleBtn" onclick="toggleMobileSidebar()" style="display: none;">ğŸ“</button>
+		<!-- ¸ğ¹ÙÀÏ¿ë Åä±Û ¹öÆ° -->
+		<button class="mobile-toggle-btn" id="mobileToggleBtn" onclick="toggleMobileSidebar()" style="display: none;">??</button>
 		
 		<div class="sidebar" id="sidebar">
 			<div class="tab-buttons">
-				<button class="tab-btn active" onclick="switchTab('report')">ğŸ• ì‹¤ì¢… ì‹ ê³ </button>
-				<button class="tab-btn" onclick="switchTab('sighting')">ğŸ‘ï¸ ëª©ê²© ì œë³´</button>
+				<button class="tab-btn active" onclick="switchTab('report')">?? ½ÇÁ¾ ½Å°í</button>
+				<button class="tab-btn" onclick="switchTab('sighting')">??? ¸ñ°İ Á¦º¸</button>
 			</div>
 
 			<div id="tabReportContent" class="tab-content active">
-				<h2>ğŸ• ê°•ì•„ì§€ ì‹¤ì¢… ì‹ ê³ </h2>
-				<div class="info-text">ì§€ë„ë¥¼ í´ë¦­í•˜ì—¬ ìœ„ì¹˜ë¥¼ ì„ íƒí•˜ì„¸ìš”</div>
+				<h2>?? °­¾ÆÁö ½ÇÁ¾ ½Å°í</h2>
+				<div class="info-text">Áöµµ¸¦ Å¬¸¯ÇÏ¿© À§Ä¡¸¦ ¼±ÅÃÇÏ¼¼¿ä</div>
 				
 				<div class="filter-section">
-					<h4>ï¿½ï¸ ì§€ì—­ ì„ íƒ</h4>
+					<h4>?? Áö¿ª ¼±ÅÃ</h4>
 					<div class="filter-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
-												<button class="filter-btn" onclick="moveToRegion(37.5665, 126.9780, 5)">ğŸ“ ì„œìš¸</button>
-						<button class="filter-btn" onclick="moveToRegion(37.2656, 127.0086, 5)">ğŸ“ ìˆ˜ì›</button>
-						<button class="filter-btn" onclick="moveToRegion(37.2795, 126.6248, 5)">ğŸ“ ì¸ì²œ</button>
-						<button class="filter-btn" onclick="moveToRegion(37.4216, 127.1286, 5)">ğŸ“ ì„±ë‚¨</button>
-						<button class="filter-btn" onclick="moveToRegion(37.5742, 127.0097, 5)">ğŸ“ ë™ëŒ€ë¬¸</button>
-						<button class="filter-btn" onclick="moveToRegion(37.4979, 127.0276, 5)">ğŸ“ ê°•ë‚¨</button>
-						<button class="filter-btn" onclick="moveToRegion(36.3504, 127.3845, 5)">ğŸ“ ëŒ€ì „</button>
-						<button class="filter-btn" onclick="moveToRegion(36.0163, 129.3439, 5)">ğŸ“ í¬í•­</button>
-						<button class="filter-btn" onclick="moveToRegion(35.8748, 128.5945, 5)">ğŸ“ ëŒ€êµ¬</button>
-						<button class="filter-btn" onclick="moveToRegion(35.1595, 126.8526, 5)">ğŸ“ ê´‘ì£¼</button>
-						<button class="filter-btn" onclick="moveToRegion(35.1796, 129.0756, 5)">ğŸ“ ë¶€ì‚°</button>
-						<button class="filter-btn" onclick="moveToRegion(34.7604, 127.6622, 5)">ğŸ“ ì—¬ìˆ˜</button>
-						<button class="filter-btn" onclick="moveToRegion(37.7510, 128.8888, 5)">ğŸ“ ê°•ë¦‰</button>
-						<button class="filter-btn" onclick="moveToRegion(36.6424, 127.4890, 5)">ğŸ“ ì²­ì£¼</button>
-						<button class="filter-btn" onclick="moveToRegion(35.5384, 129.3114, 5)">ğŸ“ ìš¸ì‚°</button>
-						<button class="filter-btn" onclick="moveToRegion(35.8362, 129.2238, 5)">ğŸ“ ê²½ì£¼</button>
-						<button class="filter-btn" onclick="moveToRegion(33.4996, 126.5312, 5)">ğŸ“ ì œì£¼</button>
-						<button class="filter-btn reset" onclick="moveToRegion(36.5, 127.5, 10)">ğŸ”„ ì „êµ­</button>
+												<button class="filter-btn" onclick="moveToRegion(37.5665, 126.9780, 5)">?? ¼­¿ï</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2656, 127.0086, 5)">?? ¼ö¿ø</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2795, 126.6248, 5)">?? ÀÎÃµ</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4216, 127.1286, 5)">?? ¼º³²</button>
+						<button class="filter-btn" onclick="moveToRegion(37.5742, 127.0097, 5)">?? µ¿´ë¹®</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4979, 127.0276, 5)">?? °­³²</button>
+						<button class="filter-btn" onclick="moveToRegion(36.3504, 127.3845, 5)">?? ´ëÀü</button>
+						<button class="filter-btn" onclick="moveToRegion(36.0163, 129.3439, 5)">?? Æ÷Ç×</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8748, 128.5945, 5)">?? ´ë±¸</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1595, 126.8526, 5)">?? ±¤ÁÖ</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1796, 129.0756, 5)">?? ºÎ»ê</button>
+						<button class="filter-btn" onclick="moveToRegion(34.7604, 127.6622, 5)">?? ¿©¼ö</button>
+						<button class="filter-btn" onclick="moveToRegion(37.7510, 128.8888, 5)">?? °­¸ª</button>
+						<button class="filter-btn" onclick="moveToRegion(36.6424, 127.4890, 5)">?? Ã»ÁÖ</button>
+						<button class="filter-btn" onclick="moveToRegion(35.5384, 129.3114, 5)">?? ¿ï»ê</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8362, 129.2238, 5)">?? °æÁÖ</button>
+						<button class="filter-btn" onclick="moveToRegion(33.4996, 126.5312, 5)">?? Á¦ÁÖ</button>
+						<button class="filter-btn reset" onclick="moveToRegion(36.5, 127.5, 10)">?? Àü±¹</button>
 					</div>
 				</div>
 				
 				<div class="filter-section">
-					<h4>ï¿½ğŸ” ì‹ ê³  ê²€ìƒ‰ í•„í„°</h4>
+					<h4>??? ½Å°í °Ë»ö ÇÊÅÍ</h4>
 					<div class="stats" id="reportStats">
-						<p>ğŸ“Š ì´ ì‹ ê³ : <strong>0</strong>ê±´</p>
-						<p>ğŸ“ í‘œì‹œ ì¤‘: <strong>0</strong>ê±´</p>
+						<p>?? ÃÑ ½Å°í: <strong>0</strong>°Ç</p>
+						<p>?? Ç¥½Ã Áß: <strong>0</strong>°Ç</p>
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">í’ˆì¢…</label>
-						<input type="text" id="filterBreed" placeholder="í’ˆì¢… ê²€ìƒ‰ (ì˜ˆ: í‘¸ë“¤)">
+						<label style="font-size: 11px;">Ç°Á¾</label>
+						<input type="text" id="filterBreed" placeholder="Ç°Á¾ °Ë»ö (¿¹: Çªµé)">
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ì‹œê°„ ë²”ìœ„</label>
+						<label style="font-size: 11px;">½Ã°£ ¹üÀ§</label>
 						<div class="time-filter">
-							<input type="date" id="filterStartDate" placeholder="ì‹œì‘ì¼">
-							<input type="date" id="filterEndDate" placeholder="ì¢…ë£Œì¼">
+							<input type="date" id="filterStartDate" placeholder="½ÃÀÛÀÏ">
+							<input type="date" id="filterEndDate" placeholder="Á¾·áÀÏ">
 						</div>
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ê±°ë¦¬ ë²”ìœ„ (km)</label>
-						<input type="number" id="filterRadius" placeholder="ë°˜ê²½ (ë¹ˆì¹¸=ì œí•œì—†ìŒ)" min="0" max="50" step="0.5">
+						<label style="font-size: 11px;">°Å¸® ¹üÀ§ (km)</label>
+						<input type="number" id="filterRadius" placeholder="¹İ°æ (ºóÄ­=Á¦ÇÑ¾øÀ½)" min="0" max="50" step="0.5">
 					</div>
 					<div class="filter-buttons">
-						<button class="filter-btn" onclick="applyDogFilter()">ğŸ” ê²€ìƒ‰</button>
-						<button class="filter-btn reset" onclick="resetDogFilter()">ì´ˆê¸°í™”</button>
+						<button class="filter-btn" onclick="applyDogFilter()">?? °Ë»ö</button>
+						<button class="filter-btn reset" onclick="resetDogFilter()">ÃÊ±âÈ­</button>
 					</div>
 				</div>
 
 				<div class="alert-section">
-					<h4>ğŸ”” ì•Œë¦¼ ì„¤ì •</h4>
+					<h4>?? ¾Ë¸² ¼³Á¤</h4>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ğŸ—ºï¸ ê°ì‹œ ë°˜ê²½ (km)</label>
-						<input type="number" id="alertRadius" placeholder="ì˜ˆ: 2" min="0.1" max="50" step="0.1" value="2">
+						<label style="font-size: 11px;">??? °¨½Ã ¹İ°æ (km)</label>
+						<input type="number" id="alertRadius" placeholder="¿¹: 2" min="0.1" max="50" step="0.1" value="2">
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ğŸ“ ê°ì‹œ ìœ„ì¹˜</label>
-						<input type="text" id="alertLocation" placeholder="ì§€ë„ í´ë¦­í•˜ì—¬ ì„¤ì •" readonly>
+						<label style="font-size: 11px;">?? °¨½Ã À§Ä¡</label>
+						<input type="text" id="alertLocation" placeholder="Áöµµ Å¬¸¯ÇÏ¿© ¼³Á¤" readonly>
 					</div>
-					<button class="filter-btn" onclick="setAlertLocation()">ğŸ“ í˜„ì¬ ì§€ì  ì„¤ì •</button>
-					<button class="filter-btn reset" onclick="disableAlerts()">ì•Œë¦¼ í•´ì œ</button>
+					<button class="filter-btn" onclick="setAlertLocation()">?? ÇöÀç ÁöÁ¡ ¼³Á¤</button>
+					<button class="filter-btn reset" onclick="disableAlerts()">¾Ë¸² ÇØÁ¦</button>
 					<div id="alertsContainer" style="margin-top: 10px;"></div>
 				</div>
 
-				<!-- ì ‘ì†ì í˜„í™© -->
+				<!-- Á¢¼ÓÀÚ ÇöÈ² -->
 				<div class="online-users-section">
-					<h4>ğŸ‘¥ í˜„ì¬ ì ‘ì†ì (<span id="online-count">0</span>ëª…)</h4>
+					<h4>?? ÇöÀç Á¢¼ÓÀÚ (<span id="online-count">0</span>¸í)</h4>
 					<div id="online-users-list"></div>
 				</div>
 
 				<form id="dogForm">
 					<div class="form-group">
-						<label>ğŸ—ºï¸ ìœ„ì¹˜</label>
+						<label>??? À§Ä¡</label>
 						<input type="text" id="location" readonly>
 					</div>
 					<div class="form-group">
-						<label>ğŸ“… ì‹¤ì¢…ì¼ì‹œ</label>
+						<label>?? ½ÇÁ¾ÀÏ½Ã</label>
 						<input type="datetime-local" id="lostDate" required>
 					</div>
 					<div class="form-group">
-						<label>ğŸ• í’ˆì¢…</label>
+						<label>?? Ç°Á¾</label>
 						<input type="text" id="breed" required>
 					</div>
 					<div class="form-group">
-						<label>íŠ¹ì§•</label>
+						<label>Æ¯Â¡</label>
 						<textarea id="features" required></textarea>
 					</div>
 					<div class="form-group">
-						<label>ğŸ“± ì—°ë½ì²˜</label>
+						<label>?? ¿¬¶ôÃ³</label>
 						<input type="tel" id="phone" required>
 					</div>
-					<button type="button" class="btn" onclick="registerDog()">ì‹ ê³  ë“±ë¡</button>
+					<button type="button" class="btn" onclick="registerDog()">½Å°í µî·Ï</button>
 				</form>
 				<div class="marker-list">
-					<h3>ğŸ“ ì‹ ê³  ëª©ë¡</h3>
+					<h3>?? ½Å°í ¸ñ·Ï</h3>
 					<div id="markerListContainer"></div>
 				</div>
 			</div>
 
 			<div id="tabSightingContent" class="tab-content">
-				<h2>ğŸ‘ï¸ ëª©ê²© ì œë³´</h2>
-				<div class="info-text">ì§€ë„ë¥¼ í´ë¦­í•˜ì—¬ ìœ„ì¹˜ë¥¼ ì„ íƒí•˜ì„¸ìš”</div>
+				<h2>??? ¸ñ°İ Á¦º¸</h2>
+				<div class="info-text">Áöµµ¸¦ Å¬¸¯ÇÏ¿© À§Ä¡¸¦ ¼±ÅÃÇÏ¼¼¿ä</div>
 				
 				<div class="filter-section">
-					<h4>ï¿½ï¸ ì§€ì—­ ì„ íƒ</h4>
+					<h4>?? Áö¿ª ¼±ÅÃ</h4>
 					<div class="filter-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
-												<button class="filter-btn" onclick="moveToRegion(37.5665, 126.9780, 5)">ğŸ“ ì„œìš¸</button>
-						<button class="filter-btn" onclick="moveToRegion(37.2656, 127.0086, 5)">ğŸ“ ìˆ˜ì›</button>
-						<button class="filter-btn" onclick="moveToRegion(37.2795, 126.6248, 5)">ğŸ“ ì¸ì²œ</button>
-						<button class="filter-btn" onclick="moveToRegion(37.4216, 127.1286, 5)">ğŸ“ ì„±ë‚¨</button>
-						<button class="filter-btn" onclick="moveToRegion(37.5742, 127.0097, 5)">ğŸ“ ë™ëŒ€ë¬¸</button>
-						<button class="filter-btn" onclick="moveToRegion(37.4979, 127.0276, 5)">ğŸ“ ê°•ë‚¨</button>
-						<button class="filter-btn" onclick="moveToRegion(36.3504, 127.3845, 5)">ğŸ“ ëŒ€ì „</button>
-						<button class="filter-btn" onclick="moveToRegion(36.0163, 129.3439, 5)">ğŸ“ í¬í•­</button>
-						<button class="filter-btn" onclick="moveToRegion(35.8748, 128.5945, 5)">ğŸ“ ëŒ€êµ¬</button>
-						<button class="filter-btn" onclick="moveToRegion(35.1595, 126.8526, 5)">ğŸ“ ê´‘ì£¼</button>
-						<button class="filter-btn" onclick="moveToRegion(35.1796, 129.0756, 5)">ğŸ“ ë¶€ì‚°</button>
-						<button class="filter-btn" onclick="moveToRegion(34.7604, 127.6622, 5)">ğŸ“ ì—¬ìˆ˜</button>
-						<button class="filter-btn" onclick="moveToRegion(37.7510, 128.8888, 5)">ğŸ“ ê°•ë¦‰</button>
-						<button class="filter-btn" onclick="moveToRegion(36.6424, 127.4890, 5)">ğŸ“ ì²­ì£¼</button>
-						<button class="filter-btn" onclick="moveToRegion(35.5384, 129.3114, 5)">ğŸ“ ìš¸ì‚°</button>
-						<button class="filter-btn" onclick="moveToRegion(35.8362, 129.2238, 5)">ğŸ“ ê²½ì£¼</button>
-						<button class="filter-btn" onclick="moveToRegion(33.4996, 126.5312, 5)">ğŸ“ ì œì£¼</button>
-						<button class="filter-btn reset" onclick="moveToRegion(36.5, 127.5, 10)">ğŸ”„ ì „êµ­</button>
+												<button class="filter-btn" onclick="moveToRegion(37.5665, 126.9780, 5)">?? ¼­¿ï</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2656, 127.0086, 5)">?? ¼ö¿ø</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2795, 126.6248, 5)">?? ÀÎÃµ</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4216, 127.1286, 5)">?? ¼º³²</button>
+						<button class="filter-btn" onclick="moveToRegion(37.5742, 127.0097, 5)">?? µ¿´ë¹®</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4979, 127.0276, 5)">?? °­³²</button>
+						<button class="filter-btn" onclick="moveToRegion(36.3504, 127.3845, 5)">?? ´ëÀü</button>
+						<button class="filter-btn" onclick="moveToRegion(36.0163, 129.3439, 5)">?? Æ÷Ç×</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8748, 128.5945, 5)">?? ´ë±¸</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1595, 126.8526, 5)">?? ±¤ÁÖ</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1796, 129.0756, 5)">?? ºÎ»ê</button>
+						<button class="filter-btn" onclick="moveToRegion(34.7604, 127.6622, 5)">?? ¿©¼ö</button>
+						<button class="filter-btn" onclick="moveToRegion(37.7510, 128.8888, 5)">?? °­¸ª</button>
+						<button class="filter-btn" onclick="moveToRegion(36.6424, 127.4890, 5)">?? Ã»ÁÖ</button>
+						<button class="filter-btn" onclick="moveToRegion(35.5384, 129.3114, 5)">?? ¿ï»ê</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8362, 129.2238, 5)">?? °æÁÖ</button>
+						<button class="filter-btn" onclick="moveToRegion(33.4996, 126.5312, 5)">?? Á¦ÁÖ</button>
+						<button class="filter-btn reset" onclick="moveToRegion(36.5, 127.5, 10)">?? Àü±¹</button>
 					</div>
 				</div>
 				
 				<div class="filter-section">
-					<h4>ï¿½ğŸ” ì œë³´ ê²€ìƒ‰ í•„í„°</h4>
+					<h4>??? Á¦º¸ °Ë»ö ÇÊÅÍ</h4>
 					<div class="stats" id="sightingStats">
-						<p>ğŸ“Š ì´ ì œë³´: <strong>0</strong>ê±´</p>
-						<p>ğŸ“ í‘œì‹œ ì¤‘: <strong>0</strong>ê±´</p>
+						<p>?? ÃÑ Á¦º¸: <strong>0</strong>°Ç</p>
+						<p>?? Ç¥½Ã Áß: <strong>0</strong>°Ç</p>
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ìµœê·¼ ì œë³´</label>
+						<label style="font-size: 11px;">ÃÖ±Ù Á¦º¸</label>
 						<select id="timeRangeFilter" style="width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 3px; font-size: 11px;">
-							<option value="">ì „ì²´</option>
-							<option value="24">ìµœê·¼ 24ì‹œê°„</option>
-							<option value="72">ìµœê·¼ 3ì¼</option>
-							<option value="168">ìµœê·¼ 1ì£¼ì¼</option>
+							<option value="">ÀüÃ¼</option>
+							<option value="24">ÃÖ±Ù 24½Ã°£</option>
+							<option value="72">ÃÖ±Ù 3ÀÏ</option>
+							<option value="168">ÃÖ±Ù 1ÁÖÀÏ</option>
 						</select>
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ìƒíƒœ ê²€ìƒ‰</label>
-						<input type="text" id="filterStatus" placeholder="ìƒíƒœ ê²€ìƒ‰ (ì˜ˆ: ê³µì›)">
+						<label style="font-size: 11px;">»óÅÂ °Ë»ö</label>
+						<input type="text" id="filterStatus" placeholder="»óÅÂ °Ë»ö (¿¹: °ø¿ø)">
 					</div>
 					<div class="filter-row">
-						<label style="font-size: 11px;">ê±°ë¦¬ ë²”ìœ„ (km)</label>
-						<input type="number" id="sightingFilterRadius" placeholder="ë°˜ê²½ (ë¹ˆì¹¸=ì œí•œì—†ìŒ)" min="0" max="50" step="0.5">
+						<label style="font-size: 11px;">°Å¸® ¹üÀ§ (km)</label>
+						<input type="number" id="sightingFilterRadius" placeholder="¹İ°æ (ºóÄ­=Á¦ÇÑ¾øÀ½)" min="0" max="50" step="0.5">
 					</div>
 					<div class="filter-buttons">
-						<button class="filter-btn" onclick="applySightingFilter()">ğŸ” ê²€ìƒ‰</button>
-						<button class="filter-btn reset" onclick="resetSightingFilter()">ì´ˆê¸°í™”</button>
+						<button class="filter-btn" onclick="applySightingFilter()">?? °Ë»ö</button>
+						<button class="filter-btn reset" onclick="resetSightingFilter()">ÃÊ±âÈ­</button>
 					</div>
 				</div>
 
 				<form id="sightingForm">
 					<div class="form-group">
-						<label>ğŸ—ºï¸ ìœ„ì¹˜</label>
+						<label>??? À§Ä¡</label>
 						<input type="text" id="sightingLocation" readonly>
 					</div>
 					<div class="form-group">
-						<label>â° ëª©ê²© ì‹œê°„</label>
+						<label>? ¸ñ°İ ½Ã°£</label>
 						<input type="datetime-local" id="sightingTime" required>
 					</div>
 					<div class="form-group">
-						<label>ğŸ“¸ ì‚¬ì§„</label>
+						<label>?? »çÁø</label>
 						<input type="file" id="sightingPhoto" accept="image/*">
 						<div id="photoPreview"></div>
 					</div>
 					<div class="form-group">
-						<label>ìƒíƒœ ì„¤ëª…</label>
+						<label>»óÅÂ ¼³¸í</label>
 						<textarea id="sightingStatus" required></textarea>
 					</div>
 					<div class="form-group">
-						<label>ğŸ“± ì œë³´ì ì—°ë½ì²˜</label>
+						<label>?? Á¦º¸ÀÚ ¿¬¶ôÃ³</label>
 						<input type="tel" id="sightingPhone">
 					</div>
-					<button type="button" class="btn" onclick="registerSighting()" style="background: #4ecdc4;">ì œë³´ ë“±ë¡</button>
+					<button type="button" class="btn" onclick="registerSighting()" style="background: #4ecdc4;">Á¦º¸ µî·Ï</button>
 				</form>
 				<div class="marker-list">
-					<h3>ğŸ‘ï¸ ì œë³´ ëª©ë¡</h3>
+					<h3>??? Á¦º¸ ¸ñ·Ï</h3>
 					<div id="sightingListContainer"></div>
 				</div>
 			</div>
@@ -446,14 +446,14 @@ require_once 'config.php';
 		let markers = [], sightingMarkers = [], infowindows = [], sightingInfowindows = [];
 		let dogsData = [], sightingsData = [];
 		let currentTab = 'report', selectionMarker = null;
-		let centerLat = 36.5, centerLng = 127.5; // í•œêµ­ ì „ì²´ ì¤‘ì‹¬
+		let centerLat = 36.5, centerLng = 127.5; // ÇÑ±¹ ÀüÃ¼ Áß½É
 		let filteredDogs = [], filteredSightings = [];
 		let alertEnabled = false;
 		let alertLat = null, alertLng = null, alertRadius = 2;
 		let alertMarker = null;
 		let notifiedSightings = new Set();
 
-		// Kakao API ë¡œë“œ í™•ì¸
+		// Kakao API ·Îµå È®ÀÎ
 		function waitForKakao() {
 			return new Promise((resolve) => {
 				if (typeof kakao !== 'undefined') {
@@ -470,13 +470,13 @@ require_once 'config.php';
 			document.querySelectorAll('.tab-btn').forEach(el => el.classList.toggle('active'));
 		}
 
-		// ëª¨ë°”ì¼ ì‚¬ì´ë“œë°” í† ê¸€
+		// ¸ğ¹ÙÀÏ »çÀÌµå¹Ù Åä±Û
 		function toggleMobileSidebar() {
 			const sidebar = document.getElementById('sidebar');
 			sidebar.classList.toggle('mobile-open');
 		}
 
-		// ëª¨ë°”ì¼ í™˜ê²½ ê°ì§€
+		// ¸ğ¹ÙÀÏ È¯°æ °¨Áö
 		function checkMobileEnvironment() {
 			const toggleBtn = document.getElementById('mobileToggleBtn');
 			if (window.innerWidth <= 768) {
@@ -490,13 +490,13 @@ require_once 'config.php';
 			}
 		}
 
-		// ìœˆë„ìš° ë¦¬ì‚¬ì´ì¦ˆ ê°ì§€
+		// À©µµ¿ì ¸®»çÀÌÁî °¨Áö
 		window.addEventListener('resize', checkMobileEnvironment);
 
 		function initMap() {
 			map = new kakao.maps.Map(document.getElementById('map'), {
 				center: new kakao.maps.LatLng(centerLat, centerLng),
-				level: 10 // í•œêµ­ ì „ì²´ë¥¼ ë³´ê¸° ìœ„í•´ ì¤Œ ë ˆë²¨ í™•ëŒ€
+				level: 10 // ÇÑ±¹ ÀüÃ¼¸¦ º¸±â À§ÇØ ÁÜ ·¹º§ È®´ë
 			});
 
 			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -518,7 +518,7 @@ require_once 'config.php';
 			loadSavedData();
 		}
 
-		// ì§€ì—­ìœ¼ë¡œ ì´ë™
+		// Áö¿ªÀ¸·Î ÀÌµ¿
 		function moveToRegion(lat, lng, level) {
 			if (!map) return;
 			map.setCenter(new kakao.maps.LatLng(lat, lng));
@@ -621,25 +621,25 @@ require_once 'config.php';
 			const total = dogsData.length;
 			const shown = filteredDogs.length;
 			document.getElementById('reportStats').innerHTML = 
-				'<p>ğŸ“Š ì´ ì‹ ê³ : <strong>' + total + '</strong>ê±´</p>' +
-				'<p>ğŸ“ í‘œì‹œ ì¤‘: <strong>' + shown + '</strong>ê±´</p>';
+				'<p>?? ÃÑ ½Å°í: <strong>' + total + '</strong>°Ç</p>' +
+				'<p>?? Ç¥½Ã Áß: <strong>' + shown + '</strong>°Ç</p>';
 		}
 
 		function updateSightingStats() {
 			const total = sightingsData.length;
 			const shown = filteredSightings.length;
 			document.getElementById('sightingStats').innerHTML = 
-				'<p>ğŸ“Š ì´ ì œë³´: <strong>' + total + '</strong>ê±´</p>' +
-				'<p>ğŸ“ í‘œì‹œ ì¤‘: <strong>' + shown + '</strong>ê±´</p>';
+				'<p>?? ÃÑ Á¦º¸: <strong>' + total + '</strong>°Ç</p>' +
+				'<p>?? Ç¥½Ã Áß: <strong>' + shown + '</strong>°Ç</p>';
 		}
 
 		function setAlertLocation() {
 			if (currentTab !== 'report') {
-				alert('ì‹¤ì¢… ì‹ ê³  íƒ­ì—ì„œ ì„¤ì •í•´ì£¼ì„¸ìš”');
+				alert('½ÇÁ¾ ½Å°í ÅÇ¿¡¼­ ¼³Á¤ÇØÁÖ¼¼¿ä');
 				return;
 			}
 			if (!selectedLat || !selectedLng) {
-				alert('ì§€ë„ì—ì„œ ìœ„ì¹˜ë¥¼ ë¨¼ì € ì„ íƒí•˜ì„¸ìš”');
+				alert('Áöµµ¿¡¼­ À§Ä¡¸¦ ¸ÕÀú ¼±ÅÃÇÏ¼¼¿ä');
 				return;
 			}
 			alertLat = selectedLat;
@@ -652,11 +652,11 @@ require_once 'config.php';
 			if (alertMarker) alertMarker.setMap(null);
 			alertMarker = new kakao.maps.Marker({
 				position: new kakao.maps.LatLng(alertLat, alertLng),
-				title: 'ì•Œë¦¼ ë°˜ê²½'
+				title: '¾Ë¸² ¹İ°æ'
 			});
 			alertMarker.setMap(map);
 
-			showNotification('âœ… ì•Œë¦¼ì´ í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤!', 'success');
+			showNotification('? ¾Ë¸²ÀÌ È°¼ºÈ­µÇ¾ú½À´Ï´Ù!', 'success');
 			displayAlerts();
 		}
 
@@ -666,12 +666,12 @@ require_once 'config.php';
 			alertLng = null;
 			notifiedSightings.clear();
 			document.getElementById('alertLocation').value = '';
-			document.getElementById('alertsContainer').innerHTML = '<p style="color: #999; font-size: 11px;">ì•Œë¦¼ì´ ë¹„í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤</p>';
+			document.getElementById('alertsContainer').innerHTML = '<p style="color: #999; font-size: 11px;">¾Ë¸²ÀÌ ºñÈ°¼ºÈ­µÇ¾ú½À´Ï´Ù</p>';
 			if (alertMarker) {
 				alertMarker.setMap(null);
 				alertMarker = null;
 			}
-			showNotification('ğŸ”” ì•Œë¦¼ì´ í•´ì œë˜ì—ˆìŠµë‹ˆë‹¤', 'info');
+			showNotification('?? ¾Ë¸²ÀÌ ÇØÁ¦µÇ¾ú½À´Ï´Ù', 'info');
 		}
 
 		function checkAlerts() {
@@ -683,7 +683,7 @@ require_once 'config.php';
 				const distance = getDistance(alertLat, alertLng, sighting.lat, sighting.lng);
 				if (distance <= alertRadius) {
 					notifiedSightings.add(sighting.id);
-					const message = 'ğŸ• ë°˜ê²½ ' + alertRadius + 'km ë‚´ì—ì„œ ê°•ì•„ì§€ ëª©ê²© ì œë³´ê°€ ìˆìŠµë‹ˆë‹¤! ' + sighting.status.substring(0, 20) + '...';
+					const message = '?? ¹İ°æ ' + alertRadius + 'km ³»¿¡¼­ °­¾ÆÁö ¸ñ°İ Á¦º¸°¡ ÀÖ½À´Ï´Ù! ' + sighting.status.substring(0, 20) + '...';
 					showNotification(message, 'info');
 				}
 			});
@@ -694,7 +694,7 @@ require_once 'config.php';
 		function displayAlerts() {
 			const container = document.getElementById('alertsContainer');
 			if (!alertEnabled) {
-				container.innerHTML = '<p style="color: #999; font-size: 11px;">ì•Œë¦¼ ì„¤ì • í›„ ëª©ê²© ì œë³´ê°€ ë“±ë¡ë˜ë©´ ì•Œë¦¼ì´ í‘œì‹œë©ë‹ˆë‹¤</p>';
+				container.innerHTML = '<p style="color: #999; font-size: 11px;">¾Ë¸² ¼³Á¤ ÈÄ ¸ñ°İ Á¦º¸°¡ µî·ÏµÇ¸é ¾Ë¸²ÀÌ Ç¥½ÃµË´Ï´Ù</p>';
 				return;
 			}
 
@@ -704,7 +704,7 @@ require_once 'config.php';
 			});
 
 			if (nearSightings.length === 0) {
-				container.innerHTML = '<p style="color: #999; font-size: 11px;">ë°˜ê²½ ë‚´ ì œë³´ ì—†ìŒ</p>';
+				container.innerHTML = '<p style="color: #999; font-size: 11px;">¹İ°æ ³» Á¦º¸ ¾øÀ½</p>';
 				return;
 			}
 
@@ -713,11 +713,11 @@ require_once 'config.php';
 				const item = document.createElement('div');
 				item.className = 'alert-item';
 				const dist = getDistance(alertLat, alertLng, sighting.lat, sighting.lng).toFixed(2);
-				item.innerHTML = '<span class="close-alert" onclick="this.parentElement.remove()">âœ•</span>' +
-					'<p><strong>â° ' + sighting.sightingTime + '</strong></p>' +
-					'<p>ğŸ“ ' + dist + 'km ê±°ë¦¬</p>' +
+				item.innerHTML = '<span class="close-alert" onclick="this.parentElement.remove()">?</span>' +
+					'<p><strong>? ' + sighting.sightingTime + '</strong></p>' +
+					'<p>?? ' + dist + 'km °Å¸®</p>' +
 					'<p>' + sighting.status.substring(0, 40) + '...</p>' +
-					(sighting.phone ? '<p>ğŸ“± ' + sighting.phone + '</p>' : '');
+					(sighting.phone ? '<p>?? ' + sighting.phone + '</p>' : '');
 				container.appendChild(item);
 			});
 		}
@@ -736,19 +736,19 @@ require_once 'config.php';
 		}
 
 		function registerDog() {
-			// ë¡œê·¸ì¸ í™•ì¸
+			// ·Î±×ÀÎ È®ÀÎ
 			const userId = localStorage.getItem('user_id');
 			if (!userId) {
-				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.');
-				window.location.href = 'auth.php';
+				alert('·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.');
+				window.location.href = '/.php';
 				return;
 			}
 
-			if (!selectedLat) return alert('ìœ„ì¹˜ë¥¼ ì„ íƒí•˜ì„¸ìš”');
+			if (!selectedLat) return alert('À§Ä¡¸¦ ¼±ÅÃÇÏ¼¼¿ä');
 			const form = document.getElementById('dogForm');
-			if (!form.lostDate.value || !form.breed.value || !form.features.value || !form.phone.value) return alert('ëª¨ë“  ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš”');
+			if (!form.lostDate.value || !form.breed.value || !form.features.value || !form.phone.value) return alert('¸ğµç Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä');
 
-			// ì„œë²„ì— ì‹ ê³  ì €ì¥
+			// ¼­¹ö¿¡ ½Å°í ÀúÀå
 			const reportData = {
 				type: 'missing',
 				title: form.breed.value,
@@ -762,7 +762,7 @@ require_once 'config.php';
 				user_email: localStorage.getItem('user_email')
 			};
 
-			fetch('api.php?action=saveReport', {
+			fetch('/api.php?action=saveReport', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
@@ -772,7 +772,7 @@ require_once 'config.php';
 			.then(response => response.json())
 			.then(data => {
 				if (data.success || data.id) {
-					// ë¡œì»¬ ë°ì´í„°ë„ ì—…ë°ì´íŠ¸
+					// ·ÎÄÃ µ¥ÀÌÅÍµµ ¾÷µ¥ÀÌÆ®
 					const dog = {
 						id: Date.now(),
 						lat: selectedLat, lng: selectedLng,
@@ -791,29 +791,29 @@ require_once 'config.php';
 					form.reset();
 					selectedLat = null;
 					if (selectionMarker) selectionMarker.setMap(null);
-					alert('ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤!');
+					alert('µî·ÏµÇ¾ú½À´Ï´Ù!');
 				} else {
-					alert('ë“±ë¡ ì‹¤íŒ¨: ' + (data.error || 'ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜'));
+					alert('µî·Ï ½ÇÆĞ: ' + (data.error || '¾Ë ¼ö ¾ø´Â ¿À·ù'));
 				}
 			})
 			.catch(err => {
-				console.error('ì—ëŸ¬:', err);
-				alert('ë„¤íŠ¸ì›Œí¬ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.');
+				console.error('¿¡·¯:', err);
+				alert('³×Æ®¿öÅ© ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.');
 			});
 		}
 
 		function registerSighting() {
-			// ë¡œê·¸ì¸ í™•ì¸
+			// ·Î±×ÀÎ È®ÀÎ
 			const userId = localStorage.getItem('user_id');
 			if (!userId) {
-				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.');
-				window.location.href = 'auth.php';
+				alert('·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.');
+				window.location.href = '/.php';
 				return;
 			}
 
-			if (!selectedSightingLat) return alert('ìœ„ì¹˜ë¥¼ ì„ íƒí•˜ì„¸ìš”');
+			if (!selectedSightingLat) return alert('À§Ä¡¸¦ ¼±ÅÃÇÏ¼¼¿ä');
 			const form = document.getElementById('sightingForm');
-			if (!form.sightingTime.value || !form.sightingStatus.value) return alert('í•„ìˆ˜ ì •ë³´ë¥¼ ì…ë ¥í•˜ì„¸ìš”');
+			if (!form.sightingTime.value || !form.sightingStatus.value) return alert('ÇÊ¼ö Á¤º¸¸¦ ÀÔ·ÂÇÏ¼¼¿ä');
 
 			const photoFile = document.getElementById('sightingPhoto').files[0];
 			if (photoFile) {
@@ -825,10 +825,10 @@ require_once 'config.php';
 			}
 
 			function saveSighting(photo) {
-				// ì„œë²„ì— ì‹ ê³  ì €ì¥
+				// ¼­¹ö¿¡ ½Å°í ÀúÀå
 				const reportData = {
 					type: 'sighting',
-					title: 'ëª©ê²© ì œë³´',
+					title: '¸ñ°İ Á¦º¸',
 					description: form.sightingStatus.value,
 					latitude: selectedSightingLat,
 					longitude: selectedSightingLng,
@@ -839,7 +839,7 @@ require_once 'config.php';
 					user_email: localStorage.getItem('user_email')
 				};
 
-				fetch('api.php?action=saveReport', {
+				fetch('/api.php?action=saveReport', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -849,7 +849,7 @@ require_once 'config.php';
 				.then(response => response.json())
 				.then(data => {
 					if (data.success || data.id) {
-						// ë¡œì»¬ ë°ì´í„°ë„ ì—…ë°ì´íŠ¸
+						// ·ÎÄÃ µ¥ÀÌÅÍµµ ¾÷µ¥ÀÌÆ®
 						const sighting = {
 							id: Date.now(),
 							lat: selectedSightingLat, lng: selectedSightingLng,
@@ -870,14 +870,14 @@ require_once 'config.php';
 						selectedSightingLat = null;
 						if (selectionMarker) selectionMarker.setMap(null);
 						checkAlerts();
-						alert('ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤!');
+						alert('µî·ÏµÇ¾ú½À´Ï´Ù!');
 					} else {
-						alert('ë“±ë¡ ì‹¤íŒ¨: ' + (data.error || 'ì•Œ ìˆ˜ ì—†ëŠ” ì˜¤ë¥˜'));
+						alert('µî·Ï ½ÇÆĞ: ' + (data.error || '¾Ë ¼ö ¾ø´Â ¿À·ù'));
 					}
 				})
 				.catch(err => {
-					console.error('ì—ëŸ¬:', err);
-					alert('ë„¤íŠ¸ì›Œí¬ ì˜¤ë¥˜ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.');
+					console.error('¿¡·¯:', err);
+					alert('³×Æ®¿öÅ© ¿À·ù°¡ ¹ß»ıÇß½À´Ï´Ù.');
 				});
 			}
 		}
@@ -888,7 +888,7 @@ require_once 'config.php';
 			markers.push(marker);
 
 			const infowindow = new kakao.maps.InfoWindow({
-				content: '<div style="padding:8px;"><h4>ğŸ• ' + dog.breed + '</h4><p><strong>ì‹¤ì¢…:</strong> ' + dog.lostDate + '</p><p><strong>íŠ¹ì§•:</strong> ' + dog.features + '</p><p><strong>ì—°ë½:</strong> ' + dog.phone + '</p></div>'
+				content: '<div style="padding:8px;"><h4>?? ' + dog.breed + '</h4><p><strong>½ÇÁ¾:</strong> ' + dog.lostDate + '</p><p><strong>Æ¯Â¡:</strong> ' + dog.features + '</p><p><strong>¿¬¶ô:</strong> ' + dog.phone + '</p></div>'
 			});
 
 			marker.addListener('click', function() {
@@ -905,7 +905,7 @@ require_once 'config.php';
 
 			const photo = sighting.photo ? '<img src="' + sighting.photo + '" style="max-width:140px;margin:5px 0;">' : '';
 			const infowindow = new kakao.maps.InfoWindow({
-				content: '<div style="padding:8px;"><h4>ğŸ‘ï¸ ëª©ê²© ì œë³´</h4><p><strong>ì‹œê°„:</strong> ' + sighting.sightingTime + '</p>' + photo + '<p><strong>ìƒíƒœ:</strong> ' + sighting.status + '</p>' + (sighting.phone ? '<p><strong>ì—°ë½:</strong> ' + sighting.phone + '</p>' : '') + '</div>'
+				content: '<div style="padding:8px;"><h4>??? ¸ñ°İ Á¦º¸</h4><p><strong>½Ã°£:</strong> ' + sighting.sightingTime + '</p>' + photo + '<p><strong>»óÅÂ:</strong> ' + sighting.status + '</p>' + (sighting.phone ? '<p><strong>¿¬¶ô:</strong> ' + sighting.phone + '</p>' : '') + '</div>'
 			});
 
 			marker.addListener('click', function() {
@@ -920,7 +920,7 @@ require_once 'config.php';
 			filteredDogs.forEach((dog, i) => {
 				const item = document.createElement('div');
 				item.className = 'marker-item';
-				item.innerHTML = '<h4>' + dog.breed + '</h4><p><strong>ì‹¤ì¢…:</strong> ' + dog.lostDate + '</p><p>' + dog.features.substring(0, 25) + '...</p>';
+				item.innerHTML = '<h4>' + dog.breed + '</h4><p><strong>½ÇÁ¾:</strong> ' + dog.lostDate + '</p><p>' + dog.features.substring(0, 25) + '...</p>';
 				item.onclick = () => {
 					map.setCenter(new kakao.maps.LatLng(dog.lat, dog.lng));
 					map.setLevel(3);
@@ -938,7 +938,7 @@ require_once 'config.php';
 				const item = document.createElement('div');
 				item.className = 'marker-item';
 				const photo = s.photo ? '<img src="' + s.photo + '" style="max-width:40px;height:auto;margin:3px 0;">' : '';
-				item.innerHTML = '<h4>ğŸ‘ï¸ ëª©ê²©</h4><p><strong>ì‹œê°„:</strong> ' + s.sightingTime + '</p>' + photo + '<p>' + s.status.substring(0, 20) + '...</p>';
+				item.innerHTML = '<h4>??? ¸ñ°İ</h4><p><strong>½Ã°£:</strong> ' + s.sightingTime + '</p>' + photo + '<p>' + s.status.substring(0, 20) + '...</p>';
 				item.onclick = () => {
 					map.setCenter(new kakao.maps.LatLng(s.lat, s.lng));
 					map.setLevel(3);
@@ -956,14 +956,14 @@ require_once 'config.php';
 		}
 
 		function loadSavedData() {
-			// APIì—ì„œ ë°ì´í„° ë¡œë“œ
-			fetch('api.php?action=getReports')
+			// API¿¡¼­ µ¥ÀÌÅÍ ·Îµå
+			fetch('/api.php?action=getReports')
 				.then(response => response.json())
 				.then(data => {
 					if (data.success && data.reports) {
 						const reports = data.reports || [];
 						
-						// íƒ€ì…ë³„ë¡œ ë¶„ë¥˜
+						// Å¸ÀÔº°·Î ºĞ·ù
 						dogsData = reports.filter(r => r.type === 'missing').map(r => ({
 							breed: r.breed,
 							lat: r.latitude,
@@ -1004,9 +1004,9 @@ require_once 'config.php';
 						updateSightingStats();
 					}
 				})
-				.catch(err => console.error('ë°ì´í„° ë¡œë“œ ì˜¤ë¥˜:', err));
+				.catch(err => console.error('µ¥ÀÌÅÍ ·Îµå ¿À·ù:', err));
 			
-			document.getElementById('alertsContainer').innerHTML = '<p style="color: #999; font-size: 11px;">ì•Œë¦¼ ì„¤ì • í›„ ëª©ê²© ì œë³´ê°€ ë“±ë¡ë˜ë©´ ì•Œë¦¼ì´ í‘œì‹œë©ë‹ˆë‹¤</p>';
+			document.getElementById('alertsContainer').innerHTML = '<p style="color: #999; font-size: 11px;">¾Ë¸² ¼³Á¤ ÈÄ ¸ñ°İ Á¦º¸°¡ µî·ÏµÇ¸é ¾Ë¸²ÀÌ Ç¥½ÃµË´Ï´Ù</p>';
 		}
 
 		document.getElementById('sightingPhoto').addEventListener('change', function(e) {
@@ -1024,7 +1024,7 @@ require_once 'config.php';
 			}
 		});
 
-		// ì‚¬ìš©ì ê³„ì • ì‹œìŠ¤í…œ í•¨ìˆ˜
+		// »ç¿ëÀÚ °èÁ¤ ½Ã½ºÅÛ ÇÔ¼ö
 		function initUserMenu() {
 			const userId = localStorage.getItem('user_id');
 			const userName = localStorage.getItem('user_name');
@@ -1038,7 +1038,7 @@ require_once 'config.php';
 				loginBtn.style.display = 'none';
 				logoutBtn.style.display = 'block';
 				userInfo.style.display = 'block';
-				userInfo.textContent = `ğŸ‘‹ ${userName || userEmail}ë‹˜`;
+				userInfo.textContent = `?? ${userName || userEmail}´Ô`;
 			} else {
 				loginBtn.style.display = 'block';
 				logoutBtn.style.display = 'none';
@@ -1047,56 +1047,56 @@ require_once 'config.php';
 		}
 
 		function goToAuth() {
-			window.location.href = 'auth.php';
+			window.location.href = '/.php';
 		}
 
 		function goToHelp() {
-			window.location.href = 'help.php';
+			window.location.href = '/.php';
 		}
 
 		function goToReportPage() {
 			const userId = localStorage.getItem('user_id');
 			if (!userId) {
-				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.');
-				window.location.href = 'auth.php';
+				alert('·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.');
+				window.location.href = '/.php';
 				return;
 			}
-			window.location.href = 'report.php';
+			window.location.href = '/.php';
 		}
 
 		function goToSightingPage() {
 			const userId = localStorage.getItem('user_id');
 			if (!userId) {
-				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.');
-				window.location.href = 'auth.php';
+				alert('·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.');
+				window.location.href = '/.php';
 				return;
 			}
-			window.location.href = 'sighting.php';
+			window.location.href = '/.php';
 		}
 
 		function goToReports() {
 			const userId = localStorage.getItem('user_id');
 			if (!userId) {
-				alert('ë¡œê·¸ì¸ì´ í•„ìš”í•©ë‹ˆë‹¤.');
-				window.location.href = 'auth.php';
+				alert('·Î±×ÀÎÀÌ ÇÊ¿äÇÕ´Ï´Ù.');
+				window.location.href = '/.php';
 				return;
 			}
-			window.location.href = 'manage-reports.php';
+			window.location.href = '/-reports.php';
 		}
 
 		function logout() {
-			if (confirm('ë¡œê·¸ì•„ì›ƒí•˜ì‹œê² ìŠµë‹ˆê¹Œ?')) {
-				fetch('api.php?action=logout', { method: 'POST' })
+			if (confirm('·Î±×¾Æ¿ôÇÏ½Ã°Ú½À´Ï±î?')) {
+				fetch('/api.php?action=logout', { method: 'POST' })
 					.then(() => {
 						localStorage.removeItem('user_id');
 						localStorage.removeItem('user_name');
 						localStorage.removeItem('user_email');
-						alert('ë¡œê·¸ì•„ì›ƒë˜ì—ˆìŠµë‹ˆë‹¤.');
+						alert('·Î±×¾Æ¿ôµÇ¾ú½À´Ï´Ù.');
 						initUserMenu();
 						location.reload();
 					})
 					.catch(err => {
-						console.error('ë¡œê·¸ì•„ì›ƒ ì˜¤ë¥˜:', err);
+						console.error('·Î±×¾Æ¿ô ¿À·ù:', err);
 						localStorage.removeItem('user_id');
 						localStorage.removeItem('user_name');
 						localStorage.removeItem('user_email');
@@ -1105,7 +1105,7 @@ require_once 'config.php';
 			}
 		}
 
-		// ì˜¨ë¼ì¸ ì‚¬ìš©ì ê´€ë¦¬
+		// ¿Â¶óÀÎ »ç¿ëÀÚ °ü¸®
 		let onlineUsers = [];
 
 		function getOnlineUsers() {
@@ -1113,9 +1113,9 @@ require_once 'config.php';
 			return stored ? JSON.parse(stored) : [];
 		}
 
-		// ì‹¤ì‹œê°„ ì˜¨ë¼ì¸ ì‚¬ìš©ì ì—…ë°ì´íŠ¸ (PHP ë°±ì—”ë“œ ì—°ë™)
+		// ½Ç½Ã°£ ¿Â¶óÀÎ »ç¿ëÀÚ ¾÷µ¥ÀÌÆ® (PHP ¹é¿£µå ¿¬µ¿)
 		function updateOnlineUsers() {
-			fetch('online_users.php?action=get')
+			fetch('/online_users.php?action=get')
 				.then(response => response.json())
 				.then(data => {
 					if (data.status === 'success') {
@@ -1125,26 +1125,26 @@ require_once 'config.php';
 						onlineCount.textContent = data.total_users;
 
 						if (data.users.length === 0) {
-							usersList.innerHTML = '<div style="color: #999; font-size: 11px; padding: 8px; text-align: center;">ì ‘ì†í•œ ì‚¬ìš©ìê°€ ì—†ìŠµë‹ˆë‹¤.</div>';
+							usersList.innerHTML = '<div style="color: #999; font-size: 11px; padding: 8px; text-align: center;">Á¢¼ÓÇÑ »ç¿ëÀÚ°¡ ¾ø½À´Ï´Ù.</div>';
 							return;
 						}
 
 						usersList.innerHTML = data.users.map(user => {
-							const isCurrentUser = user.is_current ? 'â­ ' : '';
+							const isCurrentUser = user.is_current ? '? ' : '';
 							return `
 								<div class="online-user-item" style="${user.is_current ? 'background: #ffe6e6;' : ''}">
 									<div class="user-status-dot" style="${user.is_current ? 'background: #4ecdc4; animation: pulse 1s infinite;' : 'background: #4ecdc4;'}"></div>
 									<div class="user-name">${isCurrentUser}${user.user_name}</div>
-									<div class="user-time" style="font-size: 9px;">í™œë™ ì¤‘</div>
+									<div class="user-time" style="font-size: 9px;">È°µ¿ Áß</div>
 								</div>
 							`;
 						}).join('');
 					}
 				})
-				.catch(error => console.error('ì˜¨ë¼ì¸ ì‚¬ìš©ì ì¡°íšŒ ì˜¤ë¥˜:', error));
+				.catch(error => console.error('¿Â¶óÀÎ »ç¿ëÀÚ Á¶È¸ ¿À·ù:', error));
 		}
 
-		// í˜ì´ì§€ í™œì„± ìƒíƒœ ì—…ë°ì´íŠ¸ (5ì´ˆë§ˆë‹¤) + ì‚¬ìš©ì ì •ë³´ ì „ì†¡
+		// ÆäÀÌÁö È°¼º »óÅÂ ¾÷µ¥ÀÌÆ® (5ÃÊ¸¶´Ù) + »ç¿ëÀÚ Á¤º¸ Àü¼Û
 		function keepAlive() {
 			const userName = sessionStorage.getItem('userName');
 			const userEmail = sessionStorage.getItem('userEmail');
@@ -1155,35 +1155,35 @@ require_once 'config.php';
 				userEmail: userEmail || ''
 			};
 			
-			fetch('online_users.php', {
+			fetch('/online_users.php', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify(userData)
-			}).catch(error => console.error('ì„¸ì…˜ ìœ ì§€ ì˜¤ë¥˜:', error));
+			}).catch(error => console.error('¼¼¼Ç À¯Áö ¿À·ù:', error));
 		}
 
-		// ì‹¤ì‹œê°„ ì—…ë°ì´íŠ¸
+		// ½Ç½Ã°£ ¾÷µ¥ÀÌÆ®
 		setInterval(updateOnlineUsers, 3000);
 		setInterval(keepAlive, 5000);
 
-		// í˜ì´ì§€ ë‚˜ê°ˆ ë•Œ ì‚¬ìš©ì ì œê±°
+		// ÆäÀÌÁö ³ª°¥ ¶§ »ç¿ëÀÚ Á¦°Å
 		window.addEventListener('beforeunload', function() {
-			fetch('online_users.php?action=remove');
+			fetch('/online_users.php?action=remove');
 		});
 
 		window.addEventListener('load', function() {
-			// ëª¨ë°”ì¼ í™˜ê²½ ì´ˆê¸°í™”
+			// ¸ğ¹ÙÀÏ È¯°æ ÃÊ±âÈ­
 			checkMobileEnvironment();
 			
-			// ë¡œê·¸ì¸ ìƒíƒœ ë³µì› (ì„œë²„ ì„¸ì…˜ ë™ê¸°í™”)
+			// ·Î±×ÀÎ »óÅÂ º¹¿ø (¼­¹ö ¼¼¼Ç µ¿±âÈ­)
 			const userId = localStorage.getItem('user_id');
 			const userName = localStorage.getItem('user_name');
 			const userEmail = localStorage.getItem('user_email');
 			if (userId && userEmail) {
-				// ì„œë²„ ì„¸ì…˜ ì„¤ì •
-				fetch('api.php?action=login', {
+				// ¼­¹ö ¼¼¼Ç ¼³Á¤
+				fetch('/api.php?action=login', {
 					method: 'POST',
 					headers: {
 						'Content-Type': 'application/json'
@@ -1194,26 +1194,26 @@ require_once 'config.php';
 						user_email: userEmail,
 						skip_password: true 
 					})
-				}).catch(err => console.log('ì„¸ì…˜ ë³µì› ì¤‘ ì˜¤ë¥˜:', err));
+				}).catch(err => console.log('¼¼¼Ç º¹¿ø Áß ¿À·ù:', err));
 			}
 			
-			// Kakao API ë¡œë“œ ëŒ€ê¸°
+			// Kakao API ·Îµå ´ë±â
 			waitForKakao().then(() => {
 				initMap();
 				initUserMenu();
 				
-				// í˜ì´ì§€ ë¡œë“œ ì‹œ ì‚¬ìš©ì ì¶”ê°€
+				// ÆäÀÌÁö ·Îµå ½Ã »ç¿ëÀÚ Ãß°¡
 				const userEmail = sessionStorage.getItem('userEmail');
 				const userName = sessionStorage.getItem('userName');
 				if (userEmail) {
 					addOnlineUser(userName, userEmail);
 				}
 			}).catch(err => {
-				console.error('Kakao API ë¡œë“œ ì‹¤íŒ¨:', err);
-				alert('ì§€ë„ ê¸°ëŠ¥ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. í˜ì´ì§€ë¥¼ ìƒˆë¡œê³ ì¹¨í•˜ì„¸ìš”.');
+				console.error('Kakao API ·Îµå ½ÇÆĞ:', err);
+				alert('Áöµµ ±â´ÉÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù. ÆäÀÌÁö¸¦ »õ·Î°íÄ§ÇÏ¼¼¿ä.');
 			});
 			
-			// ì²« ë¡œë“œ ì‹œ ì˜¨ë¼ì¸ ì‚¬ìš©ì ì—…ë°ì´íŠ¸
+			// Ã¹ ·Îµå ½Ã ¿Â¶óÀÎ »ç¿ëÀÚ ¾÷µ¥ÀÌÆ®
 			updateOnlineUsers();
 			keepAlive();
 		});
