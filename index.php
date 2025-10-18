@@ -73,8 +73,46 @@
 		@media (max-width: 768px) {
 			body { width: 100%; height: 100vh; font-family: Arial; overflow: hidden; }
 			.container { display: flex; flex-direction: column; width: 100%; height: 100%; }
-			#map { flex: 1; height: 100%; width: 100%; min-height: 60vh; }
-			.sidebar { width: 100%; height: auto; max-height: 40vh; background: #f5f5f5; border-right: none; border-top: 1px solid #ddd; overflow-y: auto; padding: 12px; order: 2; }
+			#map { flex: 1; height: 100%; width: 100%; }
+			.sidebar { 
+				position: fixed; 
+				bottom: 0; 
+				left: 0; 
+				right: 0;
+				width: 100%; 
+				height: 0;
+				max-height: 0;
+				background: #f5f5f5; 
+				border-right: none; 
+				border-top: 1px solid #ddd; 
+				overflow-y: auto; 
+				padding: 12px; 
+				order: 2; 
+				transition: max-height 0.3s ease, height 0.3s ease;
+				z-index: 50;
+			}
+			.sidebar.mobile-open { 
+				height: 60vh;
+				max-height: 60vh;
+			}
+			
+			.mobile-toggle-btn {
+				position: fixed;
+				bottom: 20px;
+				right: 20px;
+				width: 60px;
+				height: 60px;
+				background: #ff6b6b;
+				color: white;
+				border: none;
+				border-radius: 50%;
+				font-size: 24px;
+				cursor: pointer;
+				z-index: 99;
+				box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+				transition: all 0.3s ease;
+			}
+			.mobile-toggle-btn:active { transform: scale(0.95); }
 			
 			.user-menu { position: fixed; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 100; flex-wrap: wrap; }
 			.user-btn { padding: 8px 12px; background: white; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 11px; transition: all 0.3s; }
@@ -127,8 +165,25 @@
 			.user-menu { top: 8px; right: 8px; gap: 3px; }
 			.user-btn { padding: 6px 10px; font-size: 9px; }
 			
-			#map { height: 100%; min-height: 65vh; }
-			.sidebar { max-height: 35vh; padding: 10px; }
+			#map { height: 100%; width: 100%; }
+			.sidebar { 
+				height: 0;
+				max-height: 0;
+				padding: 10px;
+				transition: max-height 0.3s ease, height 0.3s ease;
+			}
+			.sidebar.mobile-open {
+				height: 70vh;
+				max-height: 70vh;
+			}
+			
+			.mobile-toggle-btn {
+				width: 55px;
+				height: 55px;
+				bottom: 15px;
+				right: 15px;
+				font-size: 22px;
+			}
 			
 			.tab-buttons { gap: 5px; margin-bottom: 8px; }
 			.tab-btn { padding: 6px; font-size: 10px; }
@@ -178,7 +233,10 @@
 	</div>
 
 	<div class="container">
-		<div class="sidebar">
+		<!-- 모바일용 토글 버튼 -->
+		<button class="mobile-toggle-btn" id="mobileToggleBtn" onclick="toggleMobileSidebar()" style="display: none;">📝</button>
+		
+		<div class="sidebar" id="sidebar">
 			<div class="tab-buttons">
 				<button class="tab-btn active" onclick="switchTab('report')">🐕 실종 신고</button>
 				<button class="tab-btn" onclick="switchTab('sighting')">👁️ 목격 제보</button>
@@ -360,6 +418,29 @@
 			document.querySelectorAll('.tab-content').forEach(el => el.classList.toggle('active'));
 			document.querySelectorAll('.tab-btn').forEach(el => el.classList.toggle('active'));
 		}
+
+		// 모바일 사이드바 토글
+		function toggleMobileSidebar() {
+			const sidebar = document.getElementById('sidebar');
+			sidebar.classList.toggle('mobile-open');
+		}
+
+		// 모바일 환경 감지
+		function checkMobileEnvironment() {
+			const toggleBtn = document.getElementById('mobileToggleBtn');
+			if (window.innerWidth <= 768) {
+				toggleBtn.style.display = 'block';
+				const sidebar = document.getElementById('sidebar');
+				sidebar.classList.remove('mobile-open');
+			} else {
+				toggleBtn.style.display = 'none';
+				const sidebar = document.getElementById('sidebar');
+				sidebar.classList.remove('mobile-open');
+			}
+		}
+
+		// 윈도우 리사이즈 감지
+		window.addEventListener('resize', checkMobileEnvironment);
 
 		function initMap() {
 			map = new kakao.maps.Map(document.getElementById('map'), {
@@ -877,6 +958,9 @@
 		});
 
 		window.addEventListener('load', function() {
+			// 모바일 환경 초기화
+			checkMobileEnvironment();
+			
 			// Kakao API 로드 대기
 			waitForKakao().then(() => {
 				initMap();
