@@ -17,13 +17,14 @@ run: php -S 0.0.0.0:${PORT}
 # 환경 변수
 env:
   ENVIRONMENT: production
+  PHP_MEMORY_LIMIT: 256M
 
 # 헬스 체크
 healthCheck:
   enabled: true
-  path: /
+  path: /index.php
   port: ${PORT}
-  initialDelaySeconds: 30
-  periodSeconds: 10
-  timeoutSeconds: 5
+  initialDelaySeconds: 60
+  periodSeconds: 30
+  timeoutSeconds: 10
   failureThreshold: 3

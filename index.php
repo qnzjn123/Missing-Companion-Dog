@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿<?php
+// PHP 설정 로드
+require_once 'config.php';
+?>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>

@@ -7,6 +7,13 @@ error_reporting(E_ALL);
 // 타임존 설정
 date_default_timezone_set('Asia/Seoul');
 
+// 세션 저장 경로 설정 (클라우드 환경 대응)
+$session_dir = __DIR__ . '/data/sessions';
+if (!is_dir($session_dir)) {
+    mkdir($session_dir, 0755, true);
+}
+session_save_path($session_dir);
+
 // 세션 설정
 session_start();
 
