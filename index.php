@@ -942,10 +942,24 @@
 				.catch(error => console.error('온라인 사용자 조회 오류:', error));
 		}
 
-		// 페이지 활성 상태 업데이트 (2초마다)
+		// 페이지 활성 상태 업데이트 (5초마다) + 사용자 정보 전송
 		function keepAlive() {
-			fetch('online_users.php?action=update')
-				.catch(error => console.error('세션 유지 오류:', error));
+			const userName = sessionStorage.getItem('userName');
+			const userEmail = sessionStorage.getItem('userEmail');
+			
+			const userData = {
+				action: 'update',
+				userName: userName || 'Anonymous',
+				userEmail: userEmail || ''
+			};
+			
+			fetch('online_users.php', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(userData)
+			}).catch(error => console.error('세션 유지 오류:', error));
 		}
 
 		// 실시간 업데이트

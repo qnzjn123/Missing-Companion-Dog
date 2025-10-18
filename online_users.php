@@ -21,10 +21,22 @@ function saveUserSession() {
     
     $sessionFile = $sessionsDir . session_id() . '.json';
     
+    // POST 요청에서 전송된 사용자 정보 가져오기
+    $requestData = json_decode(file_get_contents('php://input'), true) ?? [];
+    $userName = $requestData['userName'] ?? $_POST['userName'] ?? $_SESSION['userName'] ?? 'Anonymous_' . substr(session_id(), 0, 6);
+    $userEmail = $requestData['userEmail'] ?? $_POST['userEmail'] ?? $_SESSION['userEmail'] ?? '';
+    
+    // 로그인한 사용자인 경우 이름 설정
+    if (!empty($userName) && $userName !== 'Anonymous_' . substr(session_id(), 0, 6)) {
+        $displayName = $userName;
+    } else {
+        $displayName = 'Anonymous_' . substr(session_id(), 0, 6);
+    }
+    
     $userData = [
         'session_id' => session_id(),
-        'user_name' => $_SESSION['user_name'] ?? 'Anonymous_' . substr(session_id(), 0, 6),
-        'user_id' => $_SESSION['user_id'] ?? 'guest_' . bin2hex(random_bytes(4)),
+        'user_name' => $displayName,
+        'user_email' => $userEmail,
         'last_active' => time(),
         'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? 'Unknown',
         'ip_address' => $_SERVER['REMOTE_ADDR'] ?? 'Unknown'
