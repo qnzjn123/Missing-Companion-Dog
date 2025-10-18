@@ -56,11 +56,13 @@
 		.close-alert { float: right; cursor: pointer; color: #999; font-weight: bold; }
 		.notification { position: fixed; top: 20px; right: 20px; background: #ff6b6b; color: white; padding: 15px 20px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; animation: slideIn 0.3s ease-in; }
 		@keyframes slideIn { from { transform: translateX(400px); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+		@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(78, 205, 196, 0.7); } 50% { box-shadow: 0 0 0 6px rgba(78, 205, 196, 0); } }
 		.notification.success { background: #4ecdc4; }
 		.notification.info { background: #2196F3; }
 		.online-users-section { background: white; padding: 12px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #ddd; }
 		.online-users-section h4 { font-size: 12px; font-weight: bold; margin-bottom: 8px; color: #333; }
-		.online-user-item { display: flex; align-items: center; gap: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px; font-size: 11px; }
+		.online-user-item { display: flex; align-items: center; gap: 8px; padding: 8px; background: #f8f9fa; border-radius: 4px; margin-bottom: 6px; font-size: 11px; transition: all 0.3s ease; }
+		.online-user-item:hover { background: #f0f0f0; }
 		.online-user-item:last-child { margin-bottom: 0; }
 		.user-status-dot { width: 8px; height: 8px; background: #4ecdc4; border-radius: 50%; }
 		.user-status-dot.offline { background: #ddd; }
@@ -808,61 +810,51 @@
 			return stored ? JSON.parse(stored) : [];
 		}
 
-		function saveOnlineUsers() {
-			localStorage.setItem('onlineUsers', JSON.stringify(onlineUsers));
-		}
-
-		function addOnlineUser(userName, userEmail) {
-			const timestamp = new Date().toLocaleTimeString('ko-KR');
-			const newUser = {
-				id: Date.now(),
-				name: userName || userEmail,
-				email: userEmail,
-				loginTime: timestamp,
-				lastSeen: new Date().getTime()
-			};
-
-			onlineUsers = onlineUsers.filter(u => u.email !== userEmail);
-			onlineUsers.push(newUser);
-			saveOnlineUsers();
-			updateOnlineUsers();
-		}
-
-		function removeOnlineUser(userName) {
-			onlineUsers = onlineUsers.filter(u => u.name !== userName);
-			saveOnlineUsers();
-			updateOnlineUsers();
-		}
-
+		// 실시간 온라인 사용자 업데이트 (PHP 백엔드 연동)
 		function updateOnlineUsers() {
-			onlineUsers = getOnlineUsers();
-			
-			// 5분 이상 활동 없는 사용자 제거
-			const now = new Date().getTime();
-			onlineUsers = onlineUsers.filter(u => (now - u.lastSeen) < 5 * 60 * 1000);
-			saveOnlineUsers();
+			fetch('online_users.php?action=get')
+				.then(response => response.json())
+				.then(data => {
+					if (data.status === 'success') {
+						const usersList = document.getElementById('online-users-list');
+						const onlineCount = document.getElementById('online-count');
 
-			const usersList = document.getElementById('online-users-list');
-			const onlineCount = document.getElementById('online-count');
+						onlineCount.textContent = data.total_users;
 
-			onlineCount.textContent = onlineUsers.length;
+						if (data.users.length === 0) {
+							usersList.innerHTML = '<div style="color: #999; font-size: 11px; padding: 8px; text-align: center;">접속한 사용자가 없습니다.</div>';
+							return;
+						}
 
-			if (onlineUsers.length === 0) {
-				usersList.innerHTML = '<div style="color: #999; font-size: 11px; padding: 8px; text-align: center;">접속한 사용자가 없습니다.</div>';
-				return;
-			}
-
-			usersList.innerHTML = onlineUsers.map(user => `
-				<div class="online-user-item">
-					<div class="user-status-dot"></div>
-					<div class="user-name">${user.name}</div>
-					<div class="user-time">${user.loginTime}</div>
-				</div>
-			`).join('');
+						usersList.innerHTML = data.users.map(user => {
+							const isCurrentUser = user.is_current ? '⭐ ' : '';
+							return `
+								<div class="online-user-item" style="${user.is_current ? 'background: #ffe6e6;' : ''}">
+									<div class="user-status-dot" style="${user.is_current ? 'background: #4ecdc4; animation: pulse 1s infinite;' : 'background: #4ecdc4;'}"></div>
+									<div class="user-name">${isCurrentUser}${user.user_name}</div>
+									<div class="user-time" style="font-size: 9px;">활동 중</div>
+								</div>
+							`;
+						}).join('');
+					}
+				})
+				.catch(error => console.error('온라인 사용자 조회 오류:', error));
 		}
 
-		// 5초마다 온라인 사용자 업데이트
-		setInterval(updateOnlineUsers, 5000);
+		// 페이지 활성 상태 업데이트 (2초마다)
+		function keepAlive() {
+			fetch('online_users.php?action=update')
+				.catch(error => console.error('세션 유지 오류:', error));
+		}
+
+		// 실시간 업데이트
+		setInterval(updateOnlineUsers, 3000);
+		setInterval(keepAlive, 5000);
+
+		// 페이지 나갈 때 사용자 제거
+		window.addEventListener('beforeunload', function() {
+			fetch('online_users.php?action=remove');
+		});
 
 		window.addEventListener('load', function() {
 			// Kakao API 로드 대기
@@ -881,14 +873,9 @@
 				alert('지도 기능을 사용할 수 없습니다. 페이지를 새로고침하세요.');
 			});
 			
+			// 첫 로드 시 온라인 사용자 업데이트
 			updateOnlineUsers();
-
-			// 페이지 언로드 시 사용자 제거
-			window.addEventListener('beforeunload', function() {
-				if (userEmail) {
-					removeOnlineUser(userName);
-				}
-			});
+			keepAlive();
 		});
 	</script>
 </body>
