@@ -8,11 +8,13 @@ languageVersion: "8.3"
 build:
   - composer install
 
-# 실행 포트 (CloudType이 자동으로 할당)
-port: ${PORT}
+# 포트 설정
+port: 8080
 
-# 실행 명령어 (CloudType PORT 환경변수 사용)
-run: php -S 0.0.0.0:${PORT}
+# 실행 명령어 - PHP-FPM과 함께 간단한 웹서버 사용
+run: |
+  mkdir -p /tmp/php-sessions
+  php -d session.save_path=/tmp/php-sessions -d error_log=/tmp/php-error.log -S 0.0.0.0:8080
 
 # 환경 변수
 env:
@@ -22,9 +24,9 @@ env:
 # 헬스 체크
 healthCheck:
   enabled: true
-  path: /index.php
-  port: ${PORT}
-  initialDelaySeconds: 60
-  periodSeconds: 30
-  timeoutSeconds: 10
+  path: /
+  port: 8080
+  initialDelaySeconds: 30
+  periodSeconds: 10
+  timeoutSeconds: 5
   failureThreshold: 3

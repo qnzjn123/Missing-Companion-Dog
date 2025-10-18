@@ -8,11 +8,18 @@ error_reporting(E_ALL);
 date_default_timezone_set('Asia/Seoul');
 
 // 세션 저장 경로 설정 (클라우드 환경 대응)
-$session_dir = __DIR__ . '/data/sessions';
-if (!is_dir($session_dir)) {
-    mkdir($session_dir, 0755, true);
+$session_dir = sys_get_temp_dir();
+if (is_writable($session_dir)) {
+    session_save_path($session_dir);
+} else {
+    $session_dir = __DIR__ . '/data/sessions';
+    if (!is_dir($session_dir)) {
+        @mkdir($session_dir, 0777, true);
+    }
+    if (is_writable($session_dir)) {
+        session_save_path($session_dir);
+    }
 }
-session_save_path($session_dir);
 
 // 세션 설정
 session_start();
@@ -30,7 +37,7 @@ function getRequestData() {
 // 데이터 저장 폴더
 define('DATA_DIR', __DIR__ . '/data');
 if (!is_dir(DATA_DIR)) {
-    mkdir(DATA_DIR, 0755, true);
+    @mkdir(DATA_DIR, 0777, true);
 }
 
 // 사용자 데이터 파일
