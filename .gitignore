@@ -13,6 +13,7 @@ Thumbs.db
 # PHP
 vendor/
 *.log
+data/
 
 # Node
 node_modules/
