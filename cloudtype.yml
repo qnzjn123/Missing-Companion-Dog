@@ -12,7 +12,7 @@ build:
 port: ${PORT}
 
 # 실행 명령어 (CloudType PORT 환경변수 사용)
-run: php -S 0.0.0.0:${PORT:-8080}
+run: php -S 0.0.0.0:${PORT}
 
 # 환경 변수
 env:
