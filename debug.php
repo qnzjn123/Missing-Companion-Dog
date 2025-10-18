@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 // 디버그 정보 표시
 echo "<h1>System Debug Information</h1>";
 echo "<pre>";

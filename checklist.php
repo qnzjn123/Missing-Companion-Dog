@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 /**
  * Cloudtype 배포 체크리스트
  * https://your-domain/checklist.php 에서 확인하세요
