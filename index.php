@@ -2,7 +2,9 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>반려동물 강아지 실종 지도</title>
+	<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='75' font-size='75'>🐕</text></svg>">
 	<style>
 		* { margin: 0; padding: 0; box-sizing: border-box; }
 		body { width: 100%; height: 100vh; font-family: Arial; }
@@ -230,7 +232,7 @@
 		<div id="map"></div>
 	</div>
 
-	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=481ddadbb86f2ac32bc6ca3574d3244e"></script>
+	<script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=481ddadbb86f2ac32bc6ca3574d3244e"></script>
 	<script>
 		let map, selectedLat, selectedLng, selectedSightingLat, selectedSightingLng;
 		let markers = [], sightingMarkers = [], infowindows = [], sightingInfowindows = [];
