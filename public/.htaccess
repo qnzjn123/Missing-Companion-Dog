@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # 부모 디렉토리의 PHP 파일 접근 허용
+    RewriteRule ^api\.php$ ../api.php [L]
+    RewriteRule ^auth\.php$ ../auth.php [L]
+    RewriteRule ^help\.php$ ../help.php [L]
+    RewriteRule ^profile\.php$ ../profile.php [L]
+    RewriteRule ^report\.php$ ../report.php [L]
+    RewriteRule ^sighting\.php$ ../sighting.php [L]
+    RewriteRule ^manage-reports\.php$ ../manage-reports.php [L]
+    RewriteRule ^online_users\.php$ ../online_users.php [L]
+</IfModule>

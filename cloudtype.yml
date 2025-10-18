@@ -8,24 +8,17 @@ languageVersion: "8.3"
 build:
   - composer install
 
-# 포트 설정
-port: 8080
-
-# 실행 명령어 - PHP-FPM과 함께 간단한 웹서버 사용
-run: |
-  mkdir -p /tmp/php-sessions
-  php -d session.save_path=/tmp/php-sessions -d error_log=/tmp/php-error.log -S 0.0.0.0:8080
+# 실행 명령어 - 반드시 0.0.0.0:${PORT}로 설정
+run: php -S 0.0.0.0:${PORT} -t .
 
 # 환경 변수
 env:
   ENVIRONMENT: production
-  PHP_MEMORY_LIMIT: 256M
 
 # 헬스 체크
 healthCheck:
   enabled: true
-  path: /
-  port: 8080
+  path: /index.php
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
