@@ -8,22 +8,21 @@ languageVersion: "8.3"
 build:
   - composer install
 
-# 실행 포트
-port: 8000
+# 실행 포트 (CloudType이 자동으로 할당)
+port: ${PORT}
 
-# 실행 명령어 (Apache PHP 사용)
-run: vendor/bin/heroku-php-apache2
+# 실행 명령어 (CloudType PORT 환경변수 사용)
+run: php -S 0.0.0.0:${PORT:-8080}
 
 # 환경 변수
 env:
   ENVIRONMENT: production
-  PORT: "8000"
 
 # 헬스 체크
 healthCheck:
   enabled: true
   path: /
-  port: 8000
+  port: ${PORT}
   initialDelaySeconds: 30
   periodSeconds: 10
   timeoutSeconds: 5
