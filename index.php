@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8"/>
@@ -47,7 +47,7 @@
 		.filter-btn.reset:hover { background: #888; }
 		.stats { background: #f0f8ff; padding: 10px; border-radius: 4px; margin-bottom: 12px; font-size: 11px; }
 		.stats p { margin: 3px 0; }
-		.time-filter { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; margin-top: 8px; }
+		.time-filter { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; margin-top: 8px; }
 		.time-filter input { padding: 6px; border: 1px solid #ddd; border-radius: 3px; font-size: 10px; }
 		.alert-section { background: #fff3e0; padding: 12px; border-radius: 4px; margin-bottom: 15px; border: 1px solid #ffb74d; }
 		.alert-section h4 { font-size: 12px; font-weight: bold; margin-bottom: 8px; color: #e65100; }
@@ -152,7 +152,7 @@
 			
 			#photoPreview img { max-width: 100%; max-height: 60px; margin-top: 5px; border-radius: 4px; }
 			
-			.time-filter { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 5px; }
+			.time-filter { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3px; margin-top: 5px; }
 			.time-filter input { padding: 4px; border: 1px solid #ddd; border-radius: 3px; font-size: 9px; }
 			
 			.online-users-section { background: white; padding: 8px; border-radius: 4px; margin-bottom: 8px; border: 1px solid #ddd; }
@@ -226,9 +226,8 @@
 	<!-- 사용자 메뉴 -->
 	<div class="user-menu">
 		<span id="user-info" style="padding: 10px 15px; background: white; border-radius: 5px; font-size: 13px; display: none;"></span>
-		<button class="user-btn" onclick="goToProfile()">👤 프로필</button>
-		<button class="user-btn" onclick="goToReports()">📋 내 신고</button>
-		<button class="user-btn" onclick="goToAuth()">🔐 로그인</button>
+		<button class="user-btn" onclick="goToHelp()" title="도움말">❓ 도움말</button>
+		<button class="user-btn" onclick="goToAuth()" id="login-btn">🔐 로그인</button>
 		<button class="user-btn logout" id="logout-btn" onclick="logout()" style="display: none;">로그아웃</button>
 	</div>
 
@@ -247,7 +246,31 @@
 				<div class="info-text">지도를 클릭하여 위치를 선택하세요</div>
 				
 				<div class="filter-section">
-					<h4>🔍 신고 검색 필터</h4>
+					<h4>�️ 지역 선택</h4>
+					<div class="filter-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
+												<button class="filter-btn" onclick="moveToRegion(37.5665, 126.9780, 5)">📍 서울</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2656, 127.0086, 5)">📍 수원</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2795, 126.6248, 5)">📍 인천</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4216, 127.1286, 5)">📍 성남</button>
+						<button class="filter-btn" onclick="moveToRegion(37.5742, 127.0097, 5)">📍 동대문</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4979, 127.0276, 5)">📍 강남</button>
+						<button class="filter-btn" onclick="moveToRegion(36.3504, 127.3845, 5)">📍 대전</button>
+						<button class="filter-btn" onclick="moveToRegion(36.0163, 129.3439, 5)">📍 포항</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8748, 128.5945, 5)">📍 대구</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1595, 126.8526, 5)">📍 광주</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1796, 129.0756, 5)">📍 부산</button>
+						<button class="filter-btn" onclick="moveToRegion(34.7604, 127.6622, 5)">📍 여수</button>
+						<button class="filter-btn" onclick="moveToRegion(37.7510, 128.8888, 5)">📍 강릉</button>
+						<button class="filter-btn" onclick="moveToRegion(36.6424, 127.4890, 5)">📍 청주</button>
+						<button class="filter-btn" onclick="moveToRegion(35.5384, 129.3114, 5)">📍 울산</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8362, 129.2238, 5)">📍 경주</button>
+						<button class="filter-btn" onclick="moveToRegion(33.4996, 126.5312, 5)">📍 제주</button>
+						<button class="filter-btn reset" onclick="moveToRegion(36.5, 127.5, 10)">🔄 전국</button>
+					</div>
+				</div>
+				
+				<div class="filter-section">
+					<h4>�🔍 신고 검색 필터</h4>
 					<div class="stats" id="reportStats">
 						<p>📊 총 신고: <strong>0</strong>건</p>
 						<p>📍 표시 중: <strong>0</strong>건</p>
@@ -328,7 +351,31 @@
 				<div class="info-text">지도를 클릭하여 위치를 선택하세요</div>
 				
 				<div class="filter-section">
-					<h4>🔍 제보 검색 필터</h4>
+					<h4>�️ 지역 선택</h4>
+					<div class="filter-row" style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px;">
+												<button class="filter-btn" onclick="moveToRegion(37.5665, 126.9780, 5)">📍 서울</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2656, 127.0086, 5)">📍 수원</button>
+						<button class="filter-btn" onclick="moveToRegion(37.2795, 126.6248, 5)">📍 인천</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4216, 127.1286, 5)">📍 성남</button>
+						<button class="filter-btn" onclick="moveToRegion(37.5742, 127.0097, 5)">📍 동대문</button>
+						<button class="filter-btn" onclick="moveToRegion(37.4979, 127.0276, 5)">📍 강남</button>
+						<button class="filter-btn" onclick="moveToRegion(36.3504, 127.3845, 5)">📍 대전</button>
+						<button class="filter-btn" onclick="moveToRegion(36.0163, 129.3439, 5)">📍 포항</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8748, 128.5945, 5)">📍 대구</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1595, 126.8526, 5)">📍 광주</button>
+						<button class="filter-btn" onclick="moveToRegion(35.1796, 129.0756, 5)">📍 부산</button>
+						<button class="filter-btn" onclick="moveToRegion(34.7604, 127.6622, 5)">📍 여수</button>
+						<button class="filter-btn" onclick="moveToRegion(37.7510, 128.8888, 5)">📍 강릉</button>
+						<button class="filter-btn" onclick="moveToRegion(36.6424, 127.4890, 5)">📍 청주</button>
+						<button class="filter-btn" onclick="moveToRegion(35.5384, 129.3114, 5)">📍 울산</button>
+						<button class="filter-btn" onclick="moveToRegion(35.8362, 129.2238, 5)">📍 경주</button>
+						<button class="filter-btn" onclick="moveToRegion(33.4996, 126.5312, 5)">📍 제주</button>
+						<button class="filter-btn reset" onclick="moveToRegion(36.5, 127.5, 10)">🔄 전국</button>
+					</div>
+				</div>
+				
+				<div class="filter-section">
+					<h4>�🔍 제보 검색 필터</h4>
 					<div class="stats" id="sightingStats">
 						<p>📊 총 제보: <strong>0</strong>건</p>
 						<p>📍 표시 중: <strong>0</strong>건</p>
@@ -395,7 +442,7 @@
 		let markers = [], sightingMarkers = [], infowindows = [], sightingInfowindows = [];
 		let dogsData = [], sightingsData = [];
 		let currentTab = 'report', selectionMarker = null;
-		let centerLat = 37.5665, centerLng = 126.9780;
+		let centerLat = 36.5, centerLng = 127.5; // 한국 전체 중심
 		let filteredDogs = [], filteredSightings = [];
 		let alertEnabled = false;
 		let alertLat = null, alertLng = null, alertRadius = 2;
@@ -445,7 +492,7 @@
 		function initMap() {
 			map = new kakao.maps.Map(document.getElementById('map'), {
 				center: new kakao.maps.LatLng(centerLat, centerLng),
-				level: 5
+				level: 10 // 한국 전체를 보기 위해 줌 레벨 확대
 			});
 
 			kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
@@ -465,6 +512,15 @@
 			});
 
 			loadSavedData();
+		}
+
+		// 지역으로 이동
+		function moveToRegion(lat, lng, level) {
+			if (!map) return;
+			map.setCenter(new kakao.maps.LatLng(lat, lng));
+			map.setLevel(level);
+			centerLat = lat;
+			centerLng = lng;
 		}
 
 		function getDistance(lat1, lng1, lat2, lng2) {
@@ -676,32 +732,81 @@
 		}
 
 		function registerDog() {
+			// 로그인 확인
+			const userId = localStorage.getItem('user_id');
+			if (!userId) {
+				alert('로그인이 필요합니다.');
+				window.location.href = 'auth.php';
+				return;
+			}
+
 			if (!selectedLat) return alert('위치를 선택하세요');
 			const form = document.getElementById('dogForm');
 			if (!form.lostDate.value || !form.breed.value || !form.features.value || !form.phone.value) return alert('모든 정보를 입력하세요');
 
-			const dog = {
-				id: Date.now(),
-				lat: selectedLat, lng: selectedLng,
-				lostDate: form.lostDate.value,
+			// 서버에 신고 저장
+			const reportData = {
+				type: 'missing',
+				title: form.breed.value,
+				description: form.features.value,
+				latitude: selectedLat,
+				longitude: selectedLng,
 				breed: form.breed.value,
-				features: form.features.value,
 				phone: form.phone.value,
-				registeredDate: new Date().toLocaleString('ko-KR')
+				user_id: userId,
+				user_name: localStorage.getItem('user_name'),
+				user_email: localStorage.getItem('user_email')
 			};
-			dogsData.push(dog);
-			filteredDogs = [...dogsData];
-			saveData();
-			addDogMarker(dog);
-			displayDogList();
-			updateDogStats();
-			form.reset();
-			selectedLat = null;
-			if (selectionMarker) selectionMarker.setMap(null);
-			alert('등록되었습니다!');
+
+			fetch('api.php?action=saveReport', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(reportData)
+			})
+			.then(response => response.json())
+			.then(data => {
+				if (data.success || data.id) {
+					// 로컬 데이터도 업데이트
+					const dog = {
+						id: Date.now(),
+						lat: selectedLat, lng: selectedLng,
+						lostDate: form.lostDate.value,
+						breed: form.breed.value,
+						features: form.features.value,
+						phone: form.phone.value,
+						registeredDate: new Date().toLocaleString('ko-KR')
+					};
+					dogsData.push(dog);
+					filteredDogs = [...dogsData];
+					saveData();
+					addDogMarker(dog);
+					displayDogList();
+					updateDogStats();
+					form.reset();
+					selectedLat = null;
+					if (selectionMarker) selectionMarker.setMap(null);
+					alert('등록되었습니다!');
+				} else {
+					alert('등록 실패: ' + (data.error || '알 수 없는 오류'));
+				}
+			})
+			.catch(err => {
+				console.error('에러:', err);
+				alert('네트워크 오류가 발생했습니다.');
+			});
 		}
 
 		function registerSighting() {
+			// 로그인 확인
+			const userId = localStorage.getItem('user_id');
+			if (!userId) {
+				alert('로그인이 필요합니다.');
+				window.location.href = 'auth.php';
+				return;
+			}
+
 			if (!selectedSightingLat) return alert('위치를 선택하세요');
 			const form = document.getElementById('sightingForm');
 			if (!form.sightingTime.value || !form.sightingStatus.value) return alert('필수 정보를 입력하세요');
@@ -716,27 +821,60 @@
 			}
 
 			function saveSighting(photo) {
-				const sighting = {
-					id: Date.now(),
-					lat: selectedSightingLat, lng: selectedSightingLng,
-					sightingTime: form.sightingTime.value,
-					status: form.sightingStatus.value,
+				// 서버에 신고 저장
+				const reportData = {
+					type: 'sighting',
+					title: '목격 제보',
+					description: form.sightingStatus.value,
+					latitude: selectedSightingLat,
+					longitude: selectedSightingLng,
 					phone: form.sightingPhone.value,
-					photo: photo,
-					registeredDate: new Date().toLocaleString('ko-KR')
+					image: photo,
+					user_id: userId,
+					user_name: localStorage.getItem('user_name'),
+					user_email: localStorage.getItem('user_email')
 				};
-				sightingsData.push(sighting);
-				filteredSightings = [...sightingsData];
-				saveData();
-				addSightingMarker(sighting);
-				displaySightingList();
-				updateSightingStats();
-				form.reset();
-				document.getElementById('photoPreview').innerHTML = '';
-				selectedSightingLat = null;
-				if (selectionMarker) selectionMarker.setMap(null);
-				checkAlerts();
-				alert('등록되었습니다!');
+
+				fetch('api.php?action=saveReport', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(reportData)
+				})
+				.then(response => response.json())
+				.then(data => {
+					if (data.success || data.id) {
+						// 로컬 데이터도 업데이트
+						const sighting = {
+							id: Date.now(),
+							lat: selectedSightingLat, lng: selectedSightingLng,
+							sightingTime: form.sightingTime.value,
+							status: form.sightingStatus.value,
+							phone: form.sightingPhone.value,
+							photo: photo,
+							registeredDate: new Date().toLocaleString('ko-KR')
+						};
+						sightingsData.push(sighting);
+						filteredSightings = [...sightingsData];
+						saveData();
+						addSightingMarker(sighting);
+						displaySightingList();
+						updateSightingStats();
+						form.reset();
+						document.getElementById('photoPreview').innerHTML = '';
+						selectedSightingLat = null;
+						if (selectionMarker) selectionMarker.setMap(null);
+						checkAlerts();
+						alert('등록되었습니다!');
+					} else {
+						alert('등록 실패: ' + (data.error || '알 수 없는 오류'));
+					}
+				})
+				.catch(err => {
+					console.error('에러:', err);
+					alert('네트워크 오류가 발생했습니다.');
+				});
 			}
 		}
 
@@ -814,22 +952,56 @@
 		}
 
 		function loadSavedData() {
-			const d = localStorage.getItem('dogsData');
-			if (d) {
-				dogsData = JSON.parse(d);
-				filteredDogs = [...dogsData];
-				dogsData.forEach(dog => addDogMarker(dog));
-				displayDogList();
-				updateDogStats();
-			}
-			const s = localStorage.getItem('sightingsData');
-			if (s) {
-				sightingsData = JSON.parse(s);
-				filteredSightings = [...sightingsData];
-				sightingsData.forEach(sighting => addSightingMarker(sighting));
-				displaySightingList();
-				updateSightingStats();
-			}
+			// API에서 데이터 로드
+			fetch('api.php?action=getReports')
+				.then(response => response.json())
+				.then(data => {
+					if (data.success && data.reports) {
+						const reports = data.reports || [];
+						
+						// 타입별로 분류
+						dogsData = reports.filter(r => r.type === 'missing').map(r => ({
+							breed: r.breed,
+							lat: r.latitude,
+							lng: r.longitude,
+							lostDate: r.created_at,
+							photo: r.image,
+							status: r.description,
+							title: r.title,
+							color: r.color,
+							phone: r.phone,
+							userEmail: r.user_email,
+							userName: r.user_name
+						}));
+						
+						sightingsData = reports.filter(r => r.type === 'sighting').map(r => ({
+							breed: r.breed,
+							lat: r.latitude,
+							lng: r.longitude,
+							sightingTime: r.created_at,
+							photo: r.image,
+							status: r.description,
+							title: r.title,
+							color: r.color,
+							phone: r.phone,
+							userEmail: r.user_email,
+							userName: r.user_name
+						}));
+						
+						filteredDogs = [...dogsData];
+						filteredSightings = [...sightingsData];
+						
+						dogsData.forEach(dog => addDogMarker(dog));
+						sightingsData.forEach(sighting => addSightingMarker(sighting));
+						
+						displayDogList();
+						displaySightingList();
+						updateDogStats();
+						updateSightingStats();
+					}
+				})
+				.catch(err => console.error('데이터 로드 오류:', err));
+			
 			document.getElementById('alertsContainer').innerHTML = '<p style="color: #999; font-size: 11px;">알림 설정 후 목격 제보가 등록되면 알림이 표시됩니다</p>';
 		}
 
@@ -850,13 +1022,15 @@
 
 		// 사용자 계정 시스템 함수
 		function initUserMenu() {
-			const userEmail = sessionStorage.getItem('userEmail');
-			const userName = sessionStorage.getItem('userName');
-			const loginBtn = document.querySelector('.user-btn:nth-child(3)');
+			const userId = localStorage.getItem('user_id');
+			const userName = localStorage.getItem('user_name');
+			const userEmail = localStorage.getItem('user_email');
+			
+			const loginBtn = document.getElementById('login-btn');
 			const logoutBtn = document.getElementById('logout-btn');
 			const userInfo = document.getElementById('user-info');
 
-			if (userEmail) {
+			if (userId && userEmail) {
 				loginBtn.style.display = 'none';
 				logoutBtn.style.display = 'block';
 				userInfo.style.display = 'block';
@@ -872,19 +1046,33 @@
 			window.location.href = 'auth.php';
 		}
 
-		function goToProfile() {
-			const userEmail = sessionStorage.getItem('userEmail');
-			if (!userEmail) {
+		function goToHelp() {
+			window.location.href = 'help.php';
+		}
+
+		function goToReportPage() {
+			const userId = localStorage.getItem('user_id');
+			if (!userId) {
 				alert('로그인이 필요합니다.');
 				window.location.href = 'auth.php';
 				return;
 			}
-			window.location.href = 'profile.php';
+			window.location.href = 'report.php';
+		}
+
+		function goToSightingPage() {
+			const userId = localStorage.getItem('user_id');
+			if (!userId) {
+				alert('로그인이 필요합니다.');
+				window.location.href = 'auth.php';
+				return;
+			}
+			window.location.href = 'sighting.php';
 		}
 
 		function goToReports() {
-			const userEmail = sessionStorage.getItem('userEmail');
-			if (!userEmail) {
+			const userId = localStorage.getItem('user_id');
+			if (!userId) {
 				alert('로그인이 필요합니다.');
 				window.location.href = 'auth.php';
 				return;
@@ -894,12 +1082,22 @@
 
 		function logout() {
 			if (confirm('로그아웃하시겠습니까?')) {
-				const userName = sessionStorage.getItem('userName');
-				removeOnlineUser(userName);
-				sessionStorage.clear();
-				alert('로그아웃되었습니다.');
-				initUserMenu();
-				updateOnlineUsers();
+				fetch('api.php?action=logout', { method: 'POST' })
+					.then(() => {
+						localStorage.removeItem('user_id');
+						localStorage.removeItem('user_name');
+						localStorage.removeItem('user_email');
+						alert('로그아웃되었습니다.');
+						initUserMenu();
+						location.reload();
+					})
+					.catch(err => {
+						console.error('로그아웃 오류:', err);
+						localStorage.removeItem('user_id');
+						localStorage.removeItem('user_name');
+						localStorage.removeItem('user_email');
+						location.reload();
+					});
 			}
 		}
 
@@ -975,6 +1173,26 @@
 			// 모바일 환경 초기화
 			checkMobileEnvironment();
 			
+			// 로그인 상태 복원 (서버 세션 동기화)
+			const userId = localStorage.getItem('user_id');
+			const userName = localStorage.getItem('user_name');
+			const userEmail = localStorage.getItem('user_email');
+			if (userId && userEmail) {
+				// 서버 세션 설정
+				fetch('api.php?action=login', {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify({ 
+						user_id: userId,
+						user_name: userName,
+						user_email: userEmail,
+						skip_password: true 
+					})
+				}).catch(err => console.log('세션 복원 중 오류:', err));
+			}
+			
 			// Kakao API 로드 대기
 			waitForKakao().then(() => {
 				initMap();
@@ -998,3 +1216,4 @@
 	</script>
 </body>
 </html>
+
