@@ -245,6 +245,17 @@
 		let alertMarker = null;
 		let notifiedSightings = new Set();
 
+		// Kakao API 로드 확인
+		function waitForKakao() {
+			return new Promise((resolve) => {
+				if (typeof kakao !== 'undefined') {
+					resolve();
+				} else {
+					setTimeout(() => waitForKakao().then(resolve), 100);
+				}
+			});
+		}
+
 		function switchTab(tab) {
 			currentTab = tab;
 			document.querySelectorAll('.tab-content').forEach(el => el.classList.toggle('active'));
@@ -777,15 +788,21 @@
 		setInterval(updateOnlineUsers, 5000);
 
 		window.addEventListener('load', function() {
-			initMap();
-			initUserMenu();
-			
-			// 페이지 로드 시 사용자 추가
-			const userEmail = sessionStorage.getItem('userEmail');
-			const userName = sessionStorage.getItem('userName');
-			if (userEmail) {
-				addOnlineUser(userName, userEmail);
-			}
+			// Kakao API 로드 대기
+			waitForKakao().then(() => {
+				initMap();
+				initUserMenu();
+				
+				// 페이지 로드 시 사용자 추가
+				const userEmail = sessionStorage.getItem('userEmail');
+				const userName = sessionStorage.getItem('userName');
+				if (userEmail) {
+					addOnlineUser(userName, userEmail);
+				}
+			}).catch(err => {
+				console.error('Kakao API 로드 실패:', err);
+				alert('지도 기능을 사용할 수 없습니다. 페이지를 새로고침하세요.');
+			});
 			
 			updateOnlineUsers();
 
