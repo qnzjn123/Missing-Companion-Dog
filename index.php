@@ -66,6 +66,83 @@
 		.user-status-dot.offline { background: #ddd; }
 		.user-name { flex: 1; font-weight: bold; color: #333; }
 		.user-time { color: #999; font-size: 10px; }
+
+		/* 모바일 반응형 디자인 */
+		@media (max-width: 768px) {
+			body { width: 100%; height: 100vh; font-family: Arial; overflow: hidden; }
+			.container { display: flex; flex-direction: column; width: 100%; height: 100%; }
+			#map { flex: 1; height: auto; min-height: 50vh; width: 100%; }
+			.sidebar { width: 100%; height: auto; max-height: 50vh; background: #f5f5f5; border-right: none; border-top: 1px solid #ddd; overflow-y: auto; padding: 15px; order: 2; }
+			
+			.user-menu { position: fixed; top: 10px; right: 10px; display: flex; gap: 5px; z-index: 100; flex-wrap: wrap; }
+			.user-btn { padding: 8px 12px; background: white; border: 1px solid #ddd; border-radius: 5px; cursor: pointer; font-weight: bold; font-size: 11px; transition: all 0.3s; }
+			.user-btn { display: none; }
+			.user-btn.logout { display: inline-block; background: #ff6b6b; color: white; border: none; padding: 8px 12px; }
+			
+			.tab-buttons { display: flex; gap: 8px; margin-bottom: 12px; }
+			.tab-btn { flex: 1; padding: 8px; background: #e0e0e0; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; }
+			.tab-btn.active { background: #ff6b6b; color: white; }
+			
+			h2 { margin-bottom: 10px; font-size: 14px; }
+			.info-text { background: #fff3cd; padding: 8px; border-radius: 4px; margin-bottom: 10px; font-size: 11px; }
+			.form-group { margin-bottom: 10px; }
+			.form-group label { display: block; margin-bottom: 3px; font-weight: bold; font-size: 11px; }
+			.form-group input, .form-group textarea { width: 100%; padding: 6px; border: 1px solid #ddd; border-radius: 4px; font-size: 12px; font-family: Arial; }
+			.form-group textarea { min-height: 50px; }
+			.btn { width: 100%; padding: 8px; background: #ff6b6b; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 12px; }
+			
+			.filter-section { background: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; border: 1px solid #ddd; }
+			.filter-section h4 { font-size: 11px; font-weight: bold; margin-bottom: 6px; }
+			.filter-row { margin-bottom: 6px; }
+			.filter-row input { width: 100%; padding: 5px; border: 1px solid #ddd; border-radius: 3px; font-size: 11px; }
+			.filter-buttons { display: flex; gap: 4px; margin-top: 6px; }
+			.filter-btn { flex: 1; padding: 5px; background: #4ecdc4; color: white; border: none; border-radius: 3px; cursor: pointer; font-size: 10px; font-weight: bold; }
+			
+			.stats { background: #f0f8ff; padding: 8px; border-radius: 4px; margin-bottom: 10px; font-size: 10px; }
+			.stats p { margin: 2px 0; }
+			
+			.marker-list { margin-top: 10px; }
+			.marker-list h3 { font-size: 12px; margin-bottom: 8px; }
+			.marker-item { background: white; border: 1px solid #ddd; padding: 6px; margin-bottom: 6px; cursor: pointer; border-radius: 4px; font-size: 10px; }
+			
+			.alert-section { background: #fff3e0; padding: 10px; border-radius: 4px; margin-bottom: 10px; border: 1px solid #ffb74d; }
+			.alert-section h4 { font-size: 11px; font-weight: bold; margin-bottom: 6px; }
+			
+			.notification { position: fixed; top: 60px; right: 10px; left: 10px; background: #ff6b6b; color: white; padding: 12px; border-radius: 4px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; }
+			
+			#photoPreview img { max-width: 100%; max-height: 80px; margin-top: 6px; }
+			
+			.time-filter { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-top: 6px; }
+			.time-filter input { padding: 5px; border: 1px solid #ddd; border-radius: 3px; font-size: 10px; }
+			
+			.online-users-section { background: white; padding: 10px; border-radius: 4px; margin-bottom: 10px; border: 1px solid #ddd; }
+			.online-users-section h4 { font-size: 11px; font-weight: bold; margin-bottom: 6px; }
+			.online-user-item { display: flex; align-items: center; gap: 6px; padding: 6px; background: #f8f9fa; border-radius: 4px; margin-bottom: 4px; font-size: 10px; }
+		}
+
+		/* 초소형 핸드폰 (375px 이하) */
+		@media (max-width: 480px) {
+			.user-menu { top: 8px; right: 8px; gap: 4px; }
+			.user-btn { padding: 6px 10px; font-size: 10px; }
+			
+			#map { min-height: 45vh; }
+			.sidebar { max-height: 55vh; padding: 12px; }
+			
+			.tab-buttons { gap: 6px; margin-bottom: 10px; }
+			.tab-btn { padding: 6px; font-size: 11px; }
+			
+			h2 { font-size: 13px; margin-bottom: 8px; }
+			.form-group input, .form-group textarea { font-size: 11px; padding: 5px; }
+			.btn { font-size: 11px; padding: 7px; }
+			
+			.marker-item { font-size: 9px; padding: 5px; }
+			.marker-list h3 { font-size: 11px; }
+			
+			.stats { font-size: 9px; padding: 6px; }
+			.stats p { margin: 1px 0; }
+			
+			.notification { top: 50px; font-size: 11px; padding: 10px; }
+		}
 	</style>
 </head>
 <body>
